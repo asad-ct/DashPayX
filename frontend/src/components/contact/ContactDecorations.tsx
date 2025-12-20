@@ -39,7 +39,7 @@ export const ContactDecorations = () => {
 
             {/* Ellipse top right */}
             <Image
-                src="/Ellipse-53c.png"
+                src="/ellipse-53c.png"
                 alt=""
                 width={447}
                 height={447}
