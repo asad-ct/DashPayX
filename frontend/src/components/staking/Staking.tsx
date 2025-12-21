@@ -39,15 +39,15 @@ export const Staking: React.FC = () => {
     ];
 
     return (
-        <div className="relative w-full min-h-[749px] bg-[linear-gradient(180deg,rgba(6,49,68,0.9)_0%,rgba(35,116,143,0.9)_100%)] py-16 overflow-hidden">
-            <div className="relative flex flex-col gap-12">
+        <div className="relative w-full min-h-auto md:min-h-[749px] bg-[linear-gradient(180deg,rgba(6,49,68,0.9)_0%,rgba(35,116,143,0.9)_100%)] py-12 md:py-16 overflow-hidden">
+            <div className="relative flex flex-col gap-8 md:gap-12 px-4">
                 <StakingHeader />
                 <StakingCards features={stakingFeatures} />
             </div>
 
             {/* Decorative polygon */}
             <img
-                className="absolute top-16 left-8 w-60 md:w-80 h-auto opacity-50"
+                className="absolute top-16 left-4 md:left-8 w-40 sm:w-60 md:w-80 h-auto opacity-50"
                 alt=""
                 src="/polygon-9.svg"
                 aria-hidden="true"
@@ -55,7 +55,7 @@ export const Staking: React.FC = () => {
 
             {/* Decorative group */}
             <img
-                className="absolute bottom-8 right-8 w-20 md:w-32 h-auto"
+                className="absolute bottom-8 right-4 md:right-8 w-16 sm:w-20 md:w-32 h-auto"
                 alt=""
                 src="/group.png"
                 aria-hidden="true"

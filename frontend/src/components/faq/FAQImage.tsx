@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export const FAQImage = () => {
     return (
-        <div className="w-[350px] h-[450px] lg:w-[700px] lg:h-[850px] bg-white rounded-3xl border border-solid border-neutral-300 shadow-lg overflow-hidden">
+        <div className="w-full sm:w-full md:w-[350px] lg:w-[700px] h-[280px] sm:h-[320px] md:h-[450px] lg:h-[850px] bg-white rounded-3xl border border-solid border-neutral-300 shadow-lg overflow-hidden">
             <Image
                 src="/image-30.png"
                 alt="FAQ illustration"

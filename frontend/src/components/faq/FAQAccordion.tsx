@@ -56,7 +56,7 @@ export const FAQAccordion = () => {
     };
 
     return (
-        <div className="bg-white rounded-[20px] border-2 border-solid border-[#e7e7e7] shadow-[0px_4px_8px_8px_#9393931a,0px_4px_4px_#00000040] p-6 lg:p-8">
+        <div className="bg-white rounded-[20px] border-2 border-solid border-[#e7e7e7] shadow-[0px_4px_8px_8px_#9393931a,0px_4px_4px_#00000040] p-4 md:p-6 lg:p-8">
             {faqs.map((faq, index) => (
                 <FAQItem
                     key={faq.id}

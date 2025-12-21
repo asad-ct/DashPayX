@@ -5,12 +5,12 @@ import { FeaturesList } from "./FeaturesList";
 
 export const ContactCard = () => {
     return (
-        <section className="w-[900px] h-[590px] bg-white rounded-[15px] overflow-hidden shadow-[3px_4px_12px_3px_#00000026] relative">
-            <div className="text-center pt-10 mb-8">
-                <h2 className="[font-family:'Khula-SemiBold',Helvetica] font-semibold text-black text-[40px] tracking-[0] mb-2">
+        <section className="w-full md:w-[900px] h-auto md:h-[590px] bg-white rounded-[15px] overflow-hidden shadow-[3px_4px_12px_3px_#00000026] relative">
+            <div className="text-center pt-6 md:pt-10 mb-4 md:mb-8 px-4">
+                <h2 className="[font-family:'Khula-SemiBold',Helvetica] font-semibold text-black text-2xl md:text-[40px] tracking-[0] mb-2">
                     Ready to get started?
                 </h2>
-                <h3 className="[font-family:'Khula-Bold',Helvetica] font-bold text-[#d70404] text-[40px] tracking-[0]">
+                <h3 className="[font-family:'Khula-Bold',Helvetica] font-bold text-[#d70404] text-2xl md:text-[40px] tracking-[0]">
                     Start your free trial.
                 </h3>
             </div>
@@ -19,7 +19,7 @@ export const ContactCard = () => {
 
             <ContactForm />
 
-            <div className="absolute top-[89px] right-[103px] w-[152px] h-[153px]">
+            <div className="absolute top-[60px] md:top-[89px] right-4 md:right-[103px] w-[100px] md:w-[152px] h-[100px] md:h-[153px] hidden md:block">
                 <Image
                     src="/image-14.png"
                     alt="Contact illustration"

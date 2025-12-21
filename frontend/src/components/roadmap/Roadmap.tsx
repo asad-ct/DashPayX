@@ -50,7 +50,7 @@ export const Roadmap: React.FC = () => {
     ];
 
     return (
-        <div className="relative w-full bg-white flex flex-col gap-8 py-12 lg:py-16 px-4 overflow-hidden">
+        <div className="relative w-full bg-white flex flex-col gap-6 md:gap-8 py-8 md:py-12 lg:py-16 px-4 overflow-hidden">
             <RoadmapHeader />
             <RoadmapGrid phases={phases} />
             <RoadmapFooter />

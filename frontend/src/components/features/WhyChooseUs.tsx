@@ -42,14 +42,14 @@ export const WhyChooseUs = () => {
     ];
 
     return (
-        <section className="relative w-full h-[786px] bg-white py-16">
+        <section className="relative w-full min-h-auto md:min-h-[786px] bg-white py-8 md:py-16">
             <div className="w-full max-w-[1440px] mx-auto px-4">
                 <SectionHeading
                     title="Why Choose Investment by DPX?"
                     subtitle="Praesent imperdiet tellus et risus auctor which will make volutpat lacus."
                 />
 
-                <div className="mt-12 grid grid-cols-2 gap-10">
+                <div className="mt-8 md:mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
                     {features.map((feature, index) => (
                         <FeatureCard
                             key={index}

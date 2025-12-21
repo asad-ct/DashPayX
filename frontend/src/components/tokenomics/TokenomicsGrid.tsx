@@ -23,7 +23,7 @@ export const TokenomicsGrid: React.FC<TokenomicsGridProps> = ({ cards }) => {
 
             {/* Footer Note */}
             <p className="max-w-[1051px] [font-family:'Inter-Regular',Helvetica] font-normal text-[#515151] text-base text-center tracking-[0] leading-8">
-                * Future adjustments to allocation and use cases will be communicated
+                Future adjustments to allocation and use cases will be communicated
                 transparently via official DashPayX channels.
             </p>
         </div>

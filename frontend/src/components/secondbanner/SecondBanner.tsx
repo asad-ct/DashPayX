@@ -11,9 +11,13 @@ export const SecondBanner = () => {
     ];
 
     return (
-        <section className="w-full min-h-[667px] flex items-center justify-center bg-[#f9f9f9] py-12">
-            <div className="w-full max-w-7xl flex flex-col lg:flex-row gap-8 lg:gap-16 px-0 lg:px-8 items-center">
-                <div className="w-full lg:w-1/2 mr-10">
+        <section className="w-full min-h-auto bg-[#f9f9f9] py-12">
+            <div className="w-full max-w-screen-2xl mx-auto flex flex-col lg:flex-row gap-8 px-4 lg:px-8 items-center">
+                <div className="w-full flex items-center justify-center order-1 md:order-2 lg:w-1/2">
+                    <SecondBannerImage />
+                </div>
+
+                <div className="w-full lg:w-1/2 order-2 md:order-1">
                     <SecondBannerContent
                         title="Planned Staking Parameters (Conceptual)"
                         description="Staking is currently in the design and planning phase. Nothing on this page is financial advice or a guarentee of future returns."
@@ -21,11 +25,8 @@ export const SecondBanner = () => {
                         ctaText="Start Your Demo"
                     />
                 </div>
-
-                <div className="w-full lg:w-1/2 flex items-center justify-center">
-                    <SecondBannerImage />
-                </div>
             </div>
         </section>
+
     );
 };

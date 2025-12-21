@@ -31,8 +31,8 @@ export const ContactForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="w-full px-[150px]">
-            <div className="space-y-4">
+        <form onSubmit={handleSubmit} className="w-full px-6 sm:px-8 md:px-[150px] pb-6 md:pb-4">
+            <div className="space-y-3 md:space-y-4">
                 <input
                     type="text"
                     id="name"
@@ -40,7 +40,7 @@ export const ContactForm = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     placeholder="Your Name:"
-                    className="w-full h-[60px] px-4 rounded-xl border border-solid border-[#d9d9d9] [font-family:'Khula-Regular',Helvetica] font-normal text-[#555555] text-xl tracking-[0] placeholder:text-[#555555] focus:outline-none focus:ring-2 focus:ring-[#4fc3f7]"
+                    className="w-full h-[45px] md:h-[60px] px-4 rounded-xl border border-solid border-[#d9d9d9] [font-family:'Khula-Regular',Helvetica] font-normal text-[#555555] text-sm md:text-xl tracking-[0] placeholder:text-[#555555] focus:outline-none focus:ring-2 focus:ring-[#4fc3f7]"
                     required
                 />
 
@@ -51,7 +51,7 @@ export const ContactForm = () => {
                     value={formData.phone}
                     onChange={handleInputChange}
                     placeholder="Phone No."
-                    className="w-full h-[60px] px-4 rounded-xl border border-solid border-[#d9d9d9] [font-family:'Khula-Regular',Helvetica] font-normal text-[#555555] text-xl tracking-[0] placeholder:text-[#555555] focus:outline-none focus:ring-2 focus:ring-[#4fc3f7]"
+                    className="w-full h-[45px] md:h-[60px] px-4 rounded-xl border border-solid border-[#d9d9d9] [font-family:'Khula-Regular',Helvetica] font-normal text-[#555555] text-sm md:text-xl tracking-[0] placeholder:text-[#555555] focus:outline-none focus:ring-2 focus:ring-[#4fc3f7]"
                     required
                 />
 
@@ -62,15 +62,15 @@ export const ContactForm = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     placeholder="Email Address:"
-                    className="w-full h-[60px] px-4 rounded-xl border border-solid border-[#d9d9d9] [font-family:'Khula-Regular',Helvetica] font-normal text-[#555555] text-xl tracking-[0] placeholder:text-[#555555] focus:outline-none focus:ring-2 focus:ring-[#4fc3f7]"
+                    className="w-full h-[45px] md:h-[60px] px-4 rounded-xl border border-solid border-[#d9d9d9] [font-family:'Khula-Regular',Helvetica] font-normal text-[#555555] text-sm md:text-xl tracking-[0] placeholder:text-[#555555] focus:outline-none focus:ring-2 focus:ring-[#4fc3f7]"
                     required
                 />
 
                 <button
                     type="submit"
-                    className="w-full h-[66px] bg-[#d71515] rounded-xl flex items-center justify-center border border-solid border-[#d9d9d9] hover:bg-[#c01313] transition-colors cursor-pointer"
+                    className="w-full h-[48px] md:h-[66px] bg-[#d71515] rounded-xl flex items-center justify-center border border-solid border-[#d9d9d9] hover:bg-[#c01313] transition-colors cursor-pointer"
                 >
-                    <span className="[font-family:'Khula-Bold',Helvetica] font-bold text-white text-2xl tracking-[0]">
+                    <span className="[font-family:'Khula-Bold',Helvetica] font-bold text-white text-lg md:text-2xl tracking-[0]">
                         GET STARTED
                     </span>
                 </button>

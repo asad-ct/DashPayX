@@ -17,17 +17,17 @@ interface StakingCardProps {
 export const StakingCard: React.FC<StakingCardProps> = ({ feature, index }) => {
     return (
         <article
-            className="w-full md:w-[452px] min-h-[381px] flex flex-col items-center rounded-xl overflow-hidden border border-solid border-white bg-[linear-gradient(180deg,rgba(62,158,192,1)_0%,rgba(30,69,86,1)_100%)] p-8"
+            className="w-full md:w-[452px] min-h-auto md:min-h-[381px] flex flex-col items-center rounded-xl overflow-hidden border border-solid border-white bg-[linear-gradient(180deg,rgba(62,158,192,1)_0%,rgba(30,69,86,1)_100%)] p-6 md:p-8"
         >
             {/* Icon Background Circle */}
             <div
-                className="w-[70px] h-[70px] bg-white rounded-full border-2 border-solid flex items-center justify-center mb-6"
+                className="w-[60px] md:w-[70px] h-[60px] md:h-[70px] bg-white rounded-full border-2 border-solid flex items-center justify-center mb-4 md:mb-6"
                 aria-hidden="true"
             >
                 {/* Icon Image */}
                 {feature.iconType === "image" && (
                     <img
-                        className="w-[50px] h-[50px] object-cover"
+                        className="w-[40px] md:w-[50px] h-[40px] md:h-[50px] object-cover"
                         alt=""
                         src={feature.icon as string}
                         aria-hidden="true"
@@ -37,7 +37,7 @@ export const StakingCard: React.FC<StakingCardProps> = ({ feature, index }) => {
                 {/* Icon SVG */}
                 {feature.iconType === "svg" && (
                     <img
-                        className="w-[47px] h-[47px]"
+                        className="w-[40px] md:w-[47px] h-[40px] md:h-[47px]"
                         alt=""
                         src={feature.icon as string}
                         aria-hidden="true"
@@ -67,12 +67,12 @@ export const StakingCard: React.FC<StakingCardProps> = ({ feature, index }) => {
             </div>
 
             {/* Title */}
-            <h2 className="[font-family:'Inter-SemiBold',Helvetica] font-semibold text-white text-2xl text-center tracking-[0] leading-tight mb-4">
+            <h2 className="[font-family:'Inter-SemiBold',Helvetica] font-semibold text-white text-lg md:text-2xl text-center tracking-[0] leading-tight mb-3 md:mb-4">
                 {feature.title}
             </h2>
 
             {/* Description */}
-            <p className="[font-family:'Inter-Regular',Helvetica] font-normal text-white text-lg text-center tracking-[0] leading-relaxed">
+            <p className="[font-family:'Inter-Regular',Helvetica] font-normal text-white text-sm md:text-lg text-center tracking-[0] leading-relaxed">
                 {feature.description}
             </p>
         </article>

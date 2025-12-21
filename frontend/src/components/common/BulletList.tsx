@@ -9,8 +9,8 @@ export const BulletList: React.FC<BulletListProps> = ({ items }) => {
     return (
         <div className="flex flex-col gap-1">
             {items.map((item, index) => (
-                <div key={index} className="flex gap-4 items-start">
-                    <div className="w-[25px] h-[25px] flex-shrink-0 mt-2">
+                <div key={index} className="flex gap-2 md:gap-4 items-start">
+                    <div className="w-[20px] md:w-[25px] h-[20px] md:h-[25px] flex-shrink-0 mt-1 md:mt-2">
                         <Image
                             src="/checkmark-icon.png"
                             alt=""
@@ -19,7 +19,7 @@ export const BulletList: React.FC<BulletListProps> = ({ items }) => {
                             className="object-contain"
                         />
                     </div>
-                    <span className="[font-family:'Khula-SemiBold',Helvetica] font-semibold text-[#1e1e1e] text-xl tracking-[0] leading-[42px]">
+                    <span className="[font-family:'Khula-SemiBold',Helvetica] font-semibold text-[#1e1e1e] text-sm md:text-lg lg:text-xl tracking-[0] leading-[28px] md:leading-[42px]">
                         {item}
                     </span>
                 </div>

@@ -76,7 +76,7 @@ export const Testimonials = () => {
     ];
 
     return (
-        <section className="relative w-full bg-neutral-50 flex flex-col gap-8 py-16 px-4">
+        <section className="relative w-full bg-neutral-50 flex flex-col gap-6 md:gap-8 py-8 md:py-16 px-4">
             <TestimonialDecorations />
 
             <TestimonialsHeader />

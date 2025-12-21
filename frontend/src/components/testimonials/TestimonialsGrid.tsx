@@ -23,7 +23,7 @@ export const TestimonialsTransparencyCard: React.FC<
 > = ({ card, index }) => {
     return (
         <article
-            className={`w-[354px] h-[404px] ${card.bgColor} rounded-xl border-b-8 [border-bottom-style:solid] ${card.borderColor} overflow-hidden flex flex-col justify-between relative`}
+            className={`w-full sm:w-[280px] md:w-[354px] h-auto md:h-[404px] ${card.bgColor} rounded-xl border-b-8 [border-bottom-style:solid] ${card.borderColor} overflow-hidden flex flex-col justify-between relative`}
         >
             {/* Icon */}
             {/* {card.iconType === "image" ? (
@@ -36,15 +36,15 @@ export const TestimonialsTransparencyCard: React.FC<
                 <div className="w-[70px] h-[70px] bg-[#29838a] rounded-[35px] border-2 border-solid border-white mx-auto mb-4" />
             )} */}
 
-            <div className="px-6 pt-6">
+            <div className="px-4 md:px-6 pt-4 md:pt-6">
 
                 {/* Title */}
-                <h3 className={`[font-family:'Inter-SemiBold',Helvetica] font-semibold ${card.textColor} text-[25px] tracking-[0] leading-[25px] m-2 my-4`} >
+                <h3 className={`[font-family:'Inter-SemiBold',Helvetica] font-semibold ${card.textColor} text-lg md:text-[25px] tracking-[0] leading-[20px] md:leading-[25px] m-2 my-2 md:my-4`} >
                     {card.title}
                 </h3>
 
                 {/* Description */}
-                <p className={`[font-family:'Inter-Regular',Helvetica] font-normal ${card.textColor} text-lg tracking-[0] leading-[27px] m-2 mt-4`} >
+                <p className={`[font-family:'Inter-Regular',Helvetica] font-normal ${card.textColor} text-sm md:text-lg tracking-[0] leading-[20px] md:leading-[27px] m-2 mt-2 md:mt-4`} >
                     {card.description}
                 </p>
             </div>
@@ -52,18 +52,18 @@ export const TestimonialsTransparencyCard: React.FC<
 
             {/* Star Icon */}
             <img
-                className="w-18 h-18 ml-auto"
+                className="w-12 md:w-18 h-12 md:h-18 ml-auto"
                 alt=""
                 src={card.starIcon}
                 aria-hidden="true"
             />
 
             {/* Status */}
-            <div className="flex gap-1 px-6 pb-6 mx-2">
-                <span className={`[font-family:'Inter-Regular',Helvetica] font-normal ${card.textColor} text-xl tracking-[0] leading-[25px]`} >
+            <div className="flex gap-1 px-4 md:px-6 pb-4 md:pb-6 mx-2">
+                <span className={`[font-family:'Inter-Regular',Helvetica] font-normal ${card.textColor} text-sm md:text-xl tracking-[0] leading-[20px] md:leading-[25px]`} >
                     Status:
                 </span>
-                <span className={`[font-family:'Inter-Regular',Helvetica] font-normal ${card.textColor} text-xl tracking-[0] leading-[25px]`} >
+                <span className={`[font-family:'Inter-Regular',Helvetica] font-normal ${card.textColor} text-sm md:text-xl tracking-[0] leading-[20px] md:leading-[25px]`} >
                     {card.status}
                 </span>
             </div>

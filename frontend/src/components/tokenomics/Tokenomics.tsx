@@ -34,10 +34,10 @@ export const Tokenomics: React.FC = () => {
     ];
 
     return (
-        <div className="relative w-full min-h-[716px] bg-[#f6f6f6] flex flex-col overflow-hidden">
+        <div className="relative w-full min-h-auto md:min-h-[716px] bg-[#f6f6f6] flex flex-col overflow-hidden">
             {/* Decorative Star */}
             <img
-                className="absolute top-0 right-0 w-48 md:w-64 lg:w-[364px] h-auto opacity-70"
+                className="absolute top-0 right-0 w-32 sm:w-48 md:w-64 lg:w-[364px] h-auto opacity-70"
                 alt="Star"
                 src="/star-2.svg"
                 aria-hidden="true"
@@ -50,14 +50,14 @@ export const Tokenomics: React.FC = () => {
 
             {/* Decorative Polygon */}
             <img
-                className="absolute bottom-0 left-0 w-48 md:w-64 lg:w-[369px] h-auto opacity-70"
+                className="absolute bottom-0 left-0 w-32 sm:w-48 md:w-64 lg:w-[369px] h-auto opacity-70"
                 alt="Polygon"
                 src="/polygon-grey-9.svg"
                 aria-hidden="true"
             />
 
             {/* Content */}
-            <div className="flex flex-col items-center justify-center flex-1 gap-8 py-12 lg:py-16 px-4 relative z-10">
+            <div className="flex flex-col items-center justify-center flex-1 gap-6 md:gap-8 py-8 md:py-12 lg:py-16 px-4 relative z-10">
                 <TokenomicsHeader />
                 <TokenomicsGrid cards={tokenomicsData} />
             </div>

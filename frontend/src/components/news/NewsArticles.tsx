@@ -43,25 +43,25 @@ export const NewsArticles = () => {
     ];
 
     return (
-        <section className="relative w-full h-[965px] overflow-hidden">
+        <section className="relative w-full min-h-auto md:min-h-[965px] overflow-hidden">
             <NewsDecorations />
 
-            <div className="relative w-full max-w-[1440px] mx-auto pb-8 px-4">
+            <div className="relative w-full max-w-[1440px] mx-auto pb-4 md:pb-8 px-4">
                 {/* Header */}
-                <div className="text-center mb-16">
-                    <p className="[font-family:'Roboto-Medium',Helvetica] font-medium text-[#29838a] text-xl tracking-[0] mb-3">
+                <div className="text-center mb-8 md:mb-16">
+                    <p className="[font-family:'Roboto-Medium',Helvetica] font-medium text-[#29838a] text-sm md:text-lg lg:text-xl tracking-[0] mb-2 md:mb-3">
                         NEWS &amp; ARTICLES
                     </p>
-                    <h2 className="[font-family:'Roboto-Bold',Helvetica] font-bold text-[#353535] text-[40px] tracking-[0] mb-6">
+                    <h2 className="[font-family:'Roboto-Bold',Helvetica] font-bold text-[#353535] text-2xl sm:text-3xl md:text-4xl lg:text-[40px] tracking-[0] mb-4 md:mb-6">
                         Latest News of CryptoCurrency
                     </h2>
-                    <p className="w-full max-w-[828px] mx-auto [font-family:'Roboto-Light',Helvetica] font-light text-[#5c5c5c] text-xl text-center tracking-[0] leading-[35px]">
+                    <p className="w-full max-w-[828px] mx-auto [font-family:'Roboto-Light',Helvetica] font-light text-[#5c5c5c] text-sm sm:text-base md:text-lg lg:text-xl text-center tracking-[0] leading-[24px] md:leading-[35px]">
                         Stay updated with the latest insights, market trends, and expert analysis from the world of cryptocurrency.
                     </p>
                 </div>
 
                 {/* News cards grid */}
-                <div className="flex justify-center gap-8 mb-12">
+                <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-8 mb-8 md:mb-12">
                     {articles.map((article) => (
                         <NewsCard
                             key={article.id}
@@ -76,8 +76,8 @@ export const NewsArticles = () => {
 
                 {/* View All Button */}
                 <div className="flex justify-center">
-                    <button className="w-[180px] h-[50px] bg-[#29838a] rounded-lg overflow-hidden flex items-center justify-center hover:bg-[#237a81] transition-colors">
-                        <span className="[font-family:'Inter-Regular',Helvetica] font-normal text-white text-base tracking-[0] leading-[normal]">
+                    <button className="w-[140px] md:w-[180px] h-[40px] md:h-[50px] bg-[#29838a] rounded-lg overflow-hidden flex items-center justify-center hover:bg-[#237a81] transition-colors">
+                        <span className="[font-family:'Inter-Regular',Helvetica] font-normal text-white text-xs md:text-sm lg:text-base tracking-[0] leading-[normal]">
                             View All Articles
                         </span>
                     </button>
