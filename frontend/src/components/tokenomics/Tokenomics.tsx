@@ -23,7 +23,7 @@ export const Tokenomics: React.FC = () => {
         return <div className="text-center py-12">Error loading tokenomics content</div>;
     }
 
-    const tokenomicsData: TokenomicsCardData[] = contentData.content.cards?.map((card, index) => ({
+    const tokenomicsData: TokenomicsCardData[] = contentData.content.cards?.map((card: any, index: number) => ({
         id: index + 1,
         title: card.title,
         description: card.description,

@@ -24,7 +24,7 @@ export const WhyChooseUs = () => {
         return <div className="text-center py-12">Error loading features content</div>;
     }
 
-    const features: Feature[] = contentData.content.features?.map((feature) => ({
+    const features: Feature[] = contentData.content.features?.map((feature: any) => ({
         image: feature.image,
         title: feature.title,
         description: feature.description,

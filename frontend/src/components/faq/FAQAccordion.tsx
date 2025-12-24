@@ -23,7 +23,7 @@ export const FAQAccordion = () => {
         return <div className="text-center py-12">Error loading FAQ content</div>;
     }
 
-    const faqs: FAQ[] = contentData.content.faqs?.map((faq, index) => ({
+    const faqs: FAQ[] = contentData.content.faqs?.map((faq: any, index: number) => ({
         id: index + 1,
         question: faq.question,
         answer: faq.answer,

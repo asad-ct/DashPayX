@@ -67,7 +67,13 @@ export default function AdminDashboard() {
     );
 }
 
-function AdminCard({ title, description, href }) {
+interface AdminCardProps {
+    title: string;
+    description: string;
+    href: string;
+}
+
+function AdminCard({ title, description, href }: AdminCardProps) {
     return (
         <Link href={href}>
             <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition cursor-pointer">

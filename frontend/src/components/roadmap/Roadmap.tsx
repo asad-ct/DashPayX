@@ -24,7 +24,7 @@ export const Roadmap: React.FC = () => {
         return <div className="text-center py-12">Error loading roadmap content</div>;
     }
 
-    const phases: PhaseData[] = contentData.content.phases?.map((phase, index) => ({
+    const phases: PhaseData[] = contentData.content.phases?.map((phase: any, index: number) => ({
         phaseNumber: String(index + 1),
         title: phase.title,
         description: Array.isArray(phase.description) ? phase.description : [],

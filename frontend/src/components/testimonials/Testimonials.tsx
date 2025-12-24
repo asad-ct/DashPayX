@@ -32,7 +32,7 @@ export const Testimonials = () => {
         return <div className="text-center py-12">Error loading testimonials content</div>;
     }
 
-    const transparencyCards: TransparencyCard[] = contentData.content.cards?.map((card, index) => ({
+    const transparencyCards: TransparencyCard[] = contentData.content.cards?.map((card: any, index: number) => ({
         id: index + 1,
         title: card.title,
         description: card.description,

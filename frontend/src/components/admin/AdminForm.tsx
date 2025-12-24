@@ -4,10 +4,31 @@ import React, { useState, useEffect } from 'react';
 import { useContent } from '@/hooks/useContent';
 import Image from 'next/image';
 
+interface FieldSubfield {
+    name: string;
+    label: string;
+    type?: string;
+    placeholder?: string;
+    accept?: string;
+    imageKey?: string;
+    inputType?: string;
+}
+
+interface FormField {
+    name: string;
+    label: string;
+    type: string;
+    placeholder?: string;
+    accept?: string;
+    imageKey?: string;
+    itemLabel?: string;
+    subfields?: FieldSubfield[];
+}
+
 interface AdminFormProps {
     sectionType: string;
     title: string;
-    fields: any[];
+    fields: FormField[];
 }
 
 export function AdminForm({ sectionType, title, fields }: AdminFormProps) {
@@ -334,7 +355,7 @@ export function AdminForm({ sectionType, title, fields }: AdminFormProps) {
                         return (
                             <div key={field.name} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
                                 <h3 className="font-semibold text-gray-800 mb-4">{field.label}</h3>
-                                {field.subfields.map((subfield) => (
+                                {field.subfields?.map((subfield) => (
                                     <div key={subfield.name} className="mb-4">
                                         <label className="block text-sm font-medium text-gray-700 mb-2">
                                             {subfield.label}
@@ -417,10 +438,10 @@ export function AdminForm({ sectionType, title, fields }: AdminFormProps) {
                         return (
                             <div key={field.name} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
                                 <h3 className="font-semibold text-gray-800 mb-4">{field.label}</h3>
-                                {arrayData.map((item, index) => (
+                                {arrayData.map((item: any, index: number) => (
                                     <div key={index} className="mb-6 border-t pt-4">
                                         <h4 className="font-medium text-gray-700 mb-3">{field.itemLabel} {index + 1}</h4>
-                                        {field.subfields.map((subfield) => (
+                                        {field.subfields?.map((subfield) => (
                                             <div key={subfield.name} className="mb-4">
                                                 <label className="block text-sm font-medium text-gray-700 mb-2">
                                                     {subfield.label}

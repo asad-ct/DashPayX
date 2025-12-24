@@ -25,7 +25,7 @@ export const Staking: React.FC = () => {
         return <div className="text-center py-12">Error loading staking content</div>;
     }
 
-    const stakingFeatures: StakingFeature[] = contentData.content.features?.map((feature, index) => ({
+    const stakingFeatures: StakingFeature[] = contentData.content.features?.map((feature: any, index: number) => ({
         id: index + 1,
         title: feature.title,
         description: feature.description,

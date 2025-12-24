@@ -37,7 +37,7 @@ export const Contact = () => {
             <div className="relative text-center pt-6 md:pt-12 mb-8 md:mb-14 px-4">
                 <h2 className="[font-family:'Khula-SemiBold',Helvetica] font-semibold text-xl sm:text-2xl md:text-3xl lg:text-[40px] text-center tracking-[0] leading-[40px] md:leading-[55px] mb-2 md:mb-4">
                     <span className="text-[#353535]">
-                        {title.split('DashPayX').map((part, i) => (
+                        {title.split('DashPayX').map((part: string, i: number) => (
                             <React.Fragment key={i}>
                                 {part}
                                 {i === 0 && <span className="text-[#29838a]">DashPayX</span>}

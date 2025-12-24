@@ -27,7 +27,7 @@ export const NewsArticles = () => {
         return <div className="text-center py-12">Error loading news content</div>;
     }
 
-    const articles: Article[] = contentData.content.articles?.map((article, index) => {
+    const articles: Article[] = contentData.content.articles?.map((article: any, index: number) => {
         let imageSrc = article.image || '/news-default.png';
         if (imageSrc.startsWith('/api/')) {
             imageSrc = `${apiUrl.replace('/api', '')}${imageSrc}`;
