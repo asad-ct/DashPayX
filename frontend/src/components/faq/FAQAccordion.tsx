@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { FAQItem } from "./FAQItem";
-import { Loader } from "../common/Loader";
 import { useContent } from "@/hooks/useContent";
 
 interface FAQ {
@@ -13,11 +12,7 @@ interface FAQ {
 
 export const FAQAccordion = () => {
     const [openIndex, setOpenIndex] = useState<number | null>(1);
-    const { data: contentData, loading, error } = useContent('faq');
-
-    if (loading) {
-        return <Loader />;
-    }
+    const { data: contentData, error } = useContent('faq');
 
     if (error || !contentData || !('content' in contentData)) {
         return <div className="text-center py-12">Error loading FAQ content</div>;

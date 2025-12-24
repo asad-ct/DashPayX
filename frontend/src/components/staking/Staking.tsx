@@ -3,7 +3,6 @@
 import React from "react";
 import { StakingHeader } from "./StakingHeader";
 import { StakingCards } from "./StakingCards";
-import { Loader } from "../common/Loader";
 import { useContent } from "@/hooks/useContent";
 
 interface StakingFeature {
@@ -15,14 +14,10 @@ interface StakingFeature {
 }
 
 export const Staking: React.FC = () => {
-    const { data: contentData, loading, error } = useContent('staking');
-
-    if (loading) {
-        return <Loader />;
-    }
+    const { data: contentData, error } = useContent('staking');
 
     if (error || !contentData || !('content' in contentData)) {
-        return <div className="text-center py-12">Error loading staking content</div>;
+        return null;
     }
 
     const stakingFeatures: StakingFeature[] = contentData.content.features?.map((feature: any, index: number) => ({

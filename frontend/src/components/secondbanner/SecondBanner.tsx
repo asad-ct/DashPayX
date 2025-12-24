@@ -3,15 +3,10 @@
 import React from "react";
 import { SecondBannerContent } from "./SecondBannerContent";
 import { SecondBannerImage } from "./SecondBannerImage";
-import { Loader } from "../common/Loader";
 import { useContent } from "@/hooks/useContent";
 
 export const SecondBanner = () => {
-    const { data: contentData, loading, error } = useContent('secondbanner');
-
-    if (loading) {
-        return <Loader />;
-    }
+    const { data: contentData, error } = useContent('secondbanner');
 
     if (error || !contentData || !('content' in contentData)) {
         return <div className="text-center py-12">Error loading banner content</div>;

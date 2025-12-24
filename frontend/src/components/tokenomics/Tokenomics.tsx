@@ -3,7 +3,6 @@
 import React from "react";
 import { TokenomicsHeader } from "./TokenomicsHeader";
 import { TokenomicsGrid } from "./TokenomicsGrid";
-import { Loader } from "../common/Loader";
 import { useContent } from "@/hooks/useContent";
 
 interface TokenomicsCardData {
@@ -13,14 +12,10 @@ interface TokenomicsCardData {
 }
 
 export const Tokenomics: React.FC = () => {
-    const { data: contentData, loading, error } = useContent('tokenomics');
-
-    if (loading) {
-        return <Loader />;
-    }
+    const { data: contentData, error } = useContent('tokenomics');
 
     if (error || !contentData || !('content' in contentData)) {
-        return <div className="text-center py-12">Error loading tokenomics content</div>;
+        return null;
     }
 
     const tokenomicsData: TokenomicsCardData[] = contentData.content.cards?.map((card: any, index: number) => ({

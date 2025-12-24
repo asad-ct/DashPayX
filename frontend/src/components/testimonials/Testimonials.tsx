@@ -5,7 +5,6 @@ import { TestimonialsHeader } from "./TestimonialsHeader";
 import { TestimonialsCards } from "./TestimonialsCards";
 import { TestimonialsFooter } from "./TestimonialsFooter";
 import { TestimonialDecorations } from "./TestimonialDecorations";
-import { Loader } from "../common/Loader";
 import { useContent } from "@/hooks/useContent";
 
 interface TransparencyCard {
@@ -22,11 +21,7 @@ interface TransparencyCard {
 }
 
 export const Testimonials = () => {
-    const { data: contentData, loading, error } = useContent('testimonials');
-
-    if (loading) {
-        return <Loader />;
-    }
+    const { data: contentData, error } = useContent('testimonials');
 
     if (error || !contentData || !('content' in contentData)) {
         return <div className="text-center py-12">Error loading testimonials content</div>;

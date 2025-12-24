@@ -3,7 +3,6 @@
 import React from "react";
 import { NewsCard } from "./NewsCard";
 import { NewsDecorations } from "./NewsDecorations";
-import { Loader } from "../common/Loader";
 import { useContent } from "@/hooks/useContent";
 
 interface Article {
@@ -16,12 +15,8 @@ interface Article {
 }
 
 export const NewsArticles = () => {
-    const { data: contentData, loading, error } = useContent('news');
+    const { data: contentData, error } = useContent('news');
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
-
-    if (loading) {
-        return <Loader />;
-    }
 
     if (error || !contentData || !('content' in contentData)) {
         return <div className="text-center py-12">Error loading news content</div>;

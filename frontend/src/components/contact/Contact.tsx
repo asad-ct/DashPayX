@@ -6,15 +6,10 @@ import { ContactCard } from "./ContactCard";
 import { Footer } from "./Footer";
 import { ContactDecorations } from "./ContactDecorations";
 import { useContent } from "@/hooks/useContent";
-import { Loader } from "../common/Loader";
 
 export const Contact = () => {
-    const { data: contentData, loading } = useContent('contact');
+    const { data: contentData } = useContent('contact');
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
-
-    if (loading) {
-        return <Loader />;
-    }
 
     const content = contentData && 'content' in contentData ? contentData.content : null;
     const title = content?.title || "Join the DashPayX (DPX) Community";

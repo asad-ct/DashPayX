@@ -4,7 +4,6 @@ import React from "react";
 import { RoadmapHeader } from "./RoadmapHeader";
 import { RoadmapGrid } from "./RoadmapGrid";
 import { RoadmapFooter } from "./RoadmapFooter";
-import { Loader } from "../common/Loader";
 import { useContent } from "@/hooks/useContent";
 
 interface PhaseData {
@@ -14,14 +13,10 @@ interface PhaseData {
 }
 
 export const Roadmap: React.FC = () => {
-    const { data: contentData, loading, error } = useContent('roadmap');
-
-    if (loading) {
-        return <Loader />;
-    }
+    const { data: contentData, error } = useContent('roadmap');
 
     if (error || !contentData || !('content' in contentData)) {
-        return <div className="text-center py-12">Error loading roadmap content</div>;
+        return null;
     }
 
     const phases: PhaseData[] = contentData.content.phases?.map((phase: any, index: number) => ({

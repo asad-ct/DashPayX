@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useGlobalLoading } from './useGlobalLoading';
 
 interface ContentData {
     id: number;
@@ -15,11 +16,14 @@ export const useContent = (type?: string) => {
     const [data, setData] = useState<ContentData | ContentData[] | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const { addLoading, removeLoading } = useGlobalLoading();
 
     useEffect(() => {
+        const loadingKey = `content-${type || 'all'}`;
         const fetchContent = async () => {
             try {
                 setLoading(true);
+                addLoading(loadingKey);
                 const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
                 const endpoint = type ? `${apiUrl}/content/${type}` : `${apiUrl}/content`;
 
@@ -35,11 +39,12 @@ export const useContent = (type?: string) => {
                 setData(null);
             } finally {
                 setLoading(false);
+                removeLoading(loadingKey);
             }
         };
 
         fetchContent();
-    }, [type]);
+    }, [type, addLoading, removeLoading]);
 
     return { data, loading, error };
 };

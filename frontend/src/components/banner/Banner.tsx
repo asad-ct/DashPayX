@@ -3,7 +3,6 @@
 import React from "react";
 import Image from "next/image";
 import { useContent } from "@/hooks/useContent";
-import { Loader } from "../common/Loader";
 
 interface FeatureCard {
     id: string;
@@ -15,12 +14,8 @@ interface FeatureCard {
 }
 
 export const Banner = (): React.ReactNode => {
-    const { data: contentData, loading, error } = useContent('banner');
+    const { data: contentData, error } = useContent('banner');
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
-
-    if (loading) {
-        return <Loader />;
-    }
 
     if (error || !contentData || !('content' in contentData)) {
         return <div className="text-center py-12">Error loading banner content</div>;

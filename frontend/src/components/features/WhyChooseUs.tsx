@@ -3,7 +3,6 @@
 import React from "react";
 import { SectionHeading } from "../common/SectionHeading";
 import { FeatureCard } from "./FeatureCard";
-import { Loader } from "../common/Loader";
 import { useContent } from "@/hooks/useContent";
 
 interface Feature {
@@ -14,14 +13,10 @@ interface Feature {
 }
 
 export const WhyChooseUs = () => {
-    const { data: contentData, loading, error } = useContent('features');
+    const { data: contentData } = useContent('features');
 
-    if (loading) {
-        return <Loader />;
-    }
-
-    if (error || !contentData || !('content' in contentData)) {
-        return <div className="text-center py-12">Error loading features content</div>;
+    if (!contentData || !('content' in contentData)) {
+        return null;
     }
 
     const features: Feature[] = contentData.content.features?.map((feature: any) => ({

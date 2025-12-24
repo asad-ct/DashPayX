@@ -2,14 +2,13 @@
 
 import React from "react";
 import { HeroButton } from "./HeroButton";
-import { Loader } from "../common/Loader";
 import { useContent } from "@/hooks/useContent";
 
 export const HeroContent = () => {
-    const { data: contentData, loading, error } = useContent('hero');
+    const { data: contentData, error } = useContent('hero');
 
-    if (loading) {
-        return <Loader />;
+    if (!contentData || !('content' in contentData)) {
+        return null;
     }
 
     if (error || !contentData || !('content' in contentData)) {
