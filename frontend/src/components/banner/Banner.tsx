@@ -1,4 +1,9 @@
+"use client";
+
 import React from "react";
+import Image from "next/image";
+import { useContent } from "@/hooks/useContent";
+import { Loader } from "../common/Loader";
 
 interface FeatureCard {
     id: string;
@@ -10,57 +15,51 @@ interface FeatureCard {
 }
 
 export const Banner = (): React.ReactNode => {
-    const features: FeatureCard[] = [
-        {
-            id: "everyday-users",
-            icon: "/users-people-svgrepo-com-1.svg",
-            iconAlt: "Users people svgrepo",
-            title: "For Everyday Users",
-            description:
-                "Send and receive value in seconds with low fees. DPX aims to make cross-border value transfer as simple as sending a message, especially for Pakistan ↔ GCC users and families.",
-            iconClassName: "absolute top-4 left-[19px] w-[50px] h-[50px] aspect-[1]",
-        },
-        {
-            id: "merchants-partners",
-            icon: "/cooperate-svgrepo-com-1.svg",
-            iconAlt: "Cooperate svgrepo",
-            title: "For Merchants & Partners",
-            description:
-                "Over time, DashPayX plans to enable simple payment acceptance, loyalty use cases and integrations, so merchants can accept DPX while settling in their preferred currency.",
-            iconClassName: "absolute top-4 left-3.5 w-[60px] h-[60px] aspect-[1]",
-        },
-        {
-            id: "long-term-holders",
-            icon: "/cup-svgrepo-com-1.svg",
-            iconAlt: "Cup svgrepo com",
-            title: "For Long-Term Holders",
-            description:
-                "DPX includes a staking-focused design. Holders will be able to lock their tokens (subject to future terms) to earn additional DPX as rewards, aligned with the long-term growth of the ecosystem.",
-            iconClassName: "absolute top-3 left-[19px] w-[60px] h-[60px]",
-        },
-    ];
+    const { data: contentData, loading, error } = useContent('banner');
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
+
+    if (loading) {
+        return <Loader />;
+    }
+
+    if (error || !contentData || !('content' in contentData)) {
+        return <div className="text-center py-12">Error loading banner content</div>;
+    }
+
+    const bannerData = contentData.content;
+    const heading = bannerData.heading;
+    const description = bannerData.description;
+    const features: FeatureCard[] = bannerData.features || [];
+
+    // Get image from database or use default
+    let imageSrc = '/banner1.png';
+    if (bannerData.image) {
+        imageSrc = bannerData.image.startsWith('/api/')
+            ? `${apiUrl.replace('/api', '')}${bannerData.image}`
+            : bannerData.image;
+    }
 
     return (
         <div className="w-full min-h-auto md:min-h-[734px] flex items-center justify-center bg-white">
             <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-6 md:gap-8 bg-white px-4 md:px-8 py-12 mx-0 md:mx-14 lg:mx-30">
                 <div className="w-full lg:w-1/2 flex items-center justify-center md:mr-10">
-                    <img
+                    <Image
                         className="w-full max-w-[651px] h-auto object-cover"
                         alt="Banner"
-                        src="/banner1.png"
+                        src={imageSrc}
+                        width={651}
+                        height={500}
+                        unoptimized
                     />
                 </div>
 
                 <section className="w-full lg:w-1/2 flex flex-col gap-4 md:gap-6 bg-white">
                     <h1 className="[font-family:'Albert_Sans-Bold',Helvetica] font-bold text-[#272323] text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-[0] leading-tight">
-                        What is DashPayX (DPX)?
+                        {heading}
                     </h1>
 
                     <p className="[font-family:'Albert_Sans-Regular',Helvetica] font-normal text-[#6e6e6e] text-sm sm:text-base md:text-lg tracking-[0] leading-relaxed">
-                        DashPayX (DPX) is a BEP-20 token on the BNB Smart Chain designed for
-                        real-world payments and long-term staking rewards. The project is
-                        focused on enabling fast, low-friction transfers starting from
-                        Pakistan and the GCC region, with a roadmap to expand globally.
+                        {description}
                     </p>
 
                     <div className="flex flex-col gap-4 md:gap-6">

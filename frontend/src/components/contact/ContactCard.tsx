@@ -3,15 +3,20 @@ import Image from "next/image";
 import { ContactForm } from "./ContactForm";
 import { FeaturesList } from "./FeaturesList";
 
-export const ContactCard = () => {
+interface ContactCardProps {
+    formTitle?: string;
+    formSubtitle?: string;
+}
+
+export const ContactCard = ({ formTitle = "Ready to get started?", formSubtitle = "Start your free trial." }: ContactCardProps) => {
     return (
         <section className="w-full md:w-[900px] h-auto md:h-[590px] bg-white rounded-[15px] overflow-hidden shadow-[3px_4px_12px_3px_#00000026] relative">
             <div className="text-center pt-6 md:pt-10 mb-4 md:mb-8 px-4">
                 <h2 className="[font-family:'Khula-SemiBold',Helvetica] font-semibold text-black text-2xl md:text-[40px] tracking-[0] mb-2">
-                    Ready to get started?
+                    {formTitle}
                 </h2>
                 <h3 className="[font-family:'Khula-Bold',Helvetica] font-bold text-[#d70404] text-2xl md:text-[40px] tracking-[0]">
-                    Start your free trial.
+                    {formSubtitle}
                 </h3>
             </div>
 

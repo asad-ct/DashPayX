@@ -1,6 +1,10 @@
+"use client";
+
 import React from "react";
 import { SectionHeading } from "../common/SectionHeading";
 import { FeatureCard } from "./FeatureCard";
+import { Loader } from "../common/Loader";
+import { useContent } from "@/hooks/useContent";
 
 interface Feature {
     image: string;
@@ -10,43 +14,29 @@ interface Feature {
 }
 
 export const WhyChooseUs = () => {
-    const features: Feature[] = [
-        {
-            image: "/image-41.png",
-            title: "Investment planning services",
-            description:
-                "Praesent imperdiet tellus et risus auctor volutpat in lacus. Sed tincidunt vel mi sed sagittis. Nam vel ante sapien. Quisque volutpat neque eget ligula convallis, id porttitor nulla aliquet. Donec massa vel leo pretium vehicula. Duis id nisi ex. Aenean suscipit leo sed neque mattis.",
-            imageAspect: "1.16",
-        },
-        {
-            image: "/image-44.png",
-            title: "Manage Your Trading Effectively",
-            description:
-                "Praesent imperdiet tellus et risus auctor volutpat in lacus. Sed tincidunt vel mi sed sagittis. Nam vel ante sapien. Quisque volutpat neque eget ligula convallis, id porttitor nulla aliquet. Donec massa vel leo pretium vehicula. Duis id nisi ex. Aenean suscipit leo sed neque mattis.",
-            imageAspect: "1.32",
-        },
-        {
-            image: "/image-43.png",
-            title: "System Designed by Experts",
-            description:
-                "Praesent imperdiet tellus et risus auctor volutpat in lacus. Sed tincidunt vel mi sed sagittis. Nam vel ante sapien. Quisque volutpat neque eget ligula convallis, id porttitor nulla aliquet. Donec massa vel leo pretium vehicula. Duis id nisi ex. Aenean suscipit leo sed neque mattis.",
-            imageAspect: "0.94",
-        },
-        {
-            image: "/image-42.png",
-            title: "Investment planning services",
-            description:
-                "Praesent imperdiet tellus et risus auctor volutpat in lacus. Sed tincidunt vel mi sed sagittis. Nam vel ante sapien. Quisque volutpat neque eget ligula convallis, id porttitor nulla aliquet. Donec massa vel leo pretium vehicula. Duis id nisi ex. Aenean suscipit leo sed neque mattis.",
-            imageAspect: "1.29",
-        },
-    ];
+    const { data: contentData, loading, error } = useContent('features');
+
+    if (loading) {
+        return <Loader />;
+    }
+
+    if (error || !contentData || !('content' in contentData)) {
+        return <div className="text-center py-12">Error loading features content</div>;
+    }
+
+    const features: Feature[] = contentData.content.features?.map((feature) => ({
+        image: feature.image,
+        title: feature.title,
+        description: feature.description,
+        imageAspect: feature.imageAspect || "1",
+    })) || [];
 
     return (
         <section className="relative w-full min-h-auto md:min-h-[786px] bg-white py-8 md:py-16">
             <div className="w-full max-w-[1440px] mx-auto px-4">
                 <SectionHeading
-                    title="Why Choose Investment by DPX?"
-                    subtitle="Praesent imperdiet tellus et risus auctor which will make volutpat lacus."
+                    title={contentData.content.title}
+                    subtitle={contentData.content.subtitle}
                 />
 
                 <div className="mt-8 md:mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">

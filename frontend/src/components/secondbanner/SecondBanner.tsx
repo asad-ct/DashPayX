@@ -1,14 +1,27 @@
+"use client";
+
 import React from "react";
 import { SecondBannerContent } from "./SecondBannerContent";
 import { SecondBannerImage } from "./SecondBannerImage";
+import { Loader } from "../common/Loader";
+import { useContent } from "@/hooks/useContent";
 
 export const SecondBanner = () => {
-    const bulletPoints = [
-        "Separate pools / options for different lock durations.",
-        "Reward rates adjusted over time based on adoption and liquidity.",
-        "All contracts to be verifiable on-chain before launch.",
-        "Detailed documentation and \"how-to\" guides to be published prior to staking going live.",
-    ];
+    const { data: contentData, loading, error } = useContent('secondbanner');
+
+    if (loading) {
+        return <Loader />;
+    }
+
+    if (error || !contentData || !('content' in contentData)) {
+        return <div className="text-center py-12">Error loading banner content</div>;
+    }
+
+    const secondBannerData = contentData.content;
+    const title = secondBannerData.title;
+    const description = secondBannerData.description;
+    const bulletPoints = secondBannerData.bulletPoints || [];
+    const ctaText = secondBannerData.ctaText;
 
     return (
         <section className="w-full min-h-auto bg-[#f9f9f9] py-12">
@@ -19,14 +32,13 @@ export const SecondBanner = () => {
 
                 <div className="w-full lg:w-1/2 order-2 md:order-1">
                     <SecondBannerContent
-                        title="Planned Staking Parameters (Conceptual)"
-                        description="Staking is currently in the design and planning phase. Nothing on this page is financial advice or a guarentee of future returns."
+                        title={title}
+                        description={description}
                         bulletPoints={bulletPoints}
-                        ctaText="Start Your Demo"
+                        ctaText={ctaText}
                     />
                 </div>
             </div>
         </section>
-
     );
 };

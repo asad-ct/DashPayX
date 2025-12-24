@@ -1,6 +1,10 @@
+"use client";
+
 import React from "react";
 import { TokenomicsHeader } from "./TokenomicsHeader";
 import { TokenomicsGrid } from "./TokenomicsGrid";
+import { Loader } from "../common/Loader";
+import { useContent } from "@/hooks/useContent";
 
 interface TokenomicsCardData {
     id: number;
@@ -9,29 +13,24 @@ interface TokenomicsCardData {
 }
 
 export const Tokenomics: React.FC = () => {
-    const tokenomicsData: TokenomicsCardData[] = [
-        {
-            id: 1,
-            title: "Total Supply",
-            description: "1,000,000,000 DPX (fixed supply)",
-        },
-        {
-            id: 2,
-            title: "Buy / Sell Tax",
-            description: "0% — no extra token tax on transfers.",
-        },
-        {
-            id: 3,
-            title: "Presale",
-            description: "No presale. No private allocations. Distribution aligned with long-term ecosystem usage and liquidity.",
-        },
-        {
-            id: 4,
-            title: "Primary Use Cases",
-            description:
-                "Everyday payments (starting with Pakistan & GCC), staking rewards, and future integrations with partner platforms and merchants.",
-        },
-    ];
+    const { data: contentData, loading, error } = useContent('tokenomics');
+
+    if (loading) {
+        return <Loader />;
+    }
+
+    if (error || !contentData || !('content' in contentData)) {
+        return <div className="text-center py-12">Error loading tokenomics content</div>;
+    }
+
+    const tokenomicsData: TokenomicsCardData[] = contentData.content.cards?.map((card, index) => ({
+        id: index + 1,
+        title: card.title,
+        description: card.description,
+    })) || [];
+
+    const title = contentData.content.title;
+    const subtitle = contentData.content.subtitle;
 
     return (
         <div className="relative w-full min-h-auto md:min-h-[716px] bg-[#f6f6f6] flex flex-col overflow-hidden">
@@ -52,13 +51,13 @@ export const Tokenomics: React.FC = () => {
             <img
                 className="absolute bottom-0 left-0 w-32 sm:w-48 md:w-64 lg:w-[369px] h-auto opacity-70"
                 alt="Polygon"
-                src="/polygon-grey-9.svg"
+                src="/star-4.png"
                 aria-hidden="true"
             />
 
             {/* Content */}
             <div className="flex flex-col items-center justify-center flex-1 gap-6 md:gap-8 py-8 md:py-12 lg:py-16 px-4 relative z-10">
-                <TokenomicsHeader />
+                <TokenomicsHeader title={title} subtitle={subtitle} />
                 <TokenomicsGrid cards={tokenomicsData} />
             </div>
         </div>

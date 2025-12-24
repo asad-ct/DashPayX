@@ -22,10 +22,11 @@ export const NewsCard: React.FC<NewsCardProps> = ({
             {/* Image */}
             <div className="relative w-full h-[180px] sm:h-[200px] md:h-[225px]">
                 <Image
-                    src={image}
+                    src={image || '/news-default.png'}
                     alt={title}
                     fill
                     className="object-cover"
+                    unoptimized
                 />
             </div>
 

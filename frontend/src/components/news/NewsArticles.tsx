@@ -1,6 +1,10 @@
+"use client";
+
 import React from "react";
 import { NewsCard } from "./NewsCard";
 import { NewsDecorations } from "./NewsDecorations";
+import { Loader } from "../common/Loader";
+import { useContent } from "@/hooks/useContent";
 
 interface Article {
     id: number;
@@ -12,35 +16,31 @@ interface Article {
 }
 
 export const NewsArticles = () => {
-    const articles: Article[] = [
-        {
-            id: 1,
-            image: "/news-1.png",
-            title: "Bitcoin price today: ticks down below $90k amid risk-off mood; key US data awaited",
-            description:
-                "Tatsuzo Tomita, Nissan's new chief for total delivered cost transformation, is spearhea-ding the embattled Japanese company's",
-            date: "19 November 2025",
-            link: "https://www.investing.com/news/cryptocurrency-news/bitcoin-price-today-ticks-down-below-90k-amid-riskoff-mood-key-us-data-awaited-4407239",
-        },
-        {
-            id: 2,
-            image: "/news-2.png",
-            title: "EV registrations jump 27% in July for legacy brands as U.S. tax credit nears end; Tesla slips",
-            description:
-                "Chevrolet, Honda and VW surged while Tesla and Rivian lost ground. EV market share in the U.S. rose to 8.9 percent, according to",
-            date: "19 November 2025",
-            link: "https://www.investing.com/news/cryptocurrency-news/bitcoin-price-today-ticks-down-below-90k-amid-riskoff-mood-key-us-data-awaited-4407239",
-        },
-        {
-            id: 3,
-            image: "/news-3.png",
-            title: "The Interactive Brokers now allows to fund the accounts with stablecoins",
-            description:
-                "Along with blistering performance, The Lamborghinis are known for wild styling. From the chunky wheel arches and towering wing",
-            date: "19 November 2025",
-            link: "https://www.investing.com/news/cryptocurrency-news/bitcoin-price-today-ticks-down-below-90k-amid-riskoff-mood-key-us-data-awaited-4407239",
-        },
-    ];
+    const { data: contentData, loading, error } = useContent('news');
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
+
+    if (loading) {
+        return <Loader />;
+    }
+
+    if (error || !contentData || !('content' in contentData)) {
+        return <div className="text-center py-12">Error loading news content</div>;
+    }
+
+    const articles: Article[] = contentData.content.articles?.map((article, index) => {
+        let imageSrc = article.image || '/news-default.png';
+        if (imageSrc.startsWith('/api/')) {
+            imageSrc = `${apiUrl.replace('/api', '')}${imageSrc}`;
+        }
+        return {
+            id: index + 1,
+            image: imageSrc,
+            title: article.title,
+            description: article.description,
+            date: article.date,
+            link: article.link,
+        };
+    }) || [];
 
     return (
         <section className="relative w-full min-h-auto md:min-h-[965px] overflow-hidden">
@@ -53,10 +53,10 @@ export const NewsArticles = () => {
                         NEWS &amp; ARTICLES
                     </p>
                     <h2 className="[font-family:'Roboto-Bold',Helvetica] font-bold text-[#353535] text-2xl sm:text-3xl md:text-4xl lg:text-[40px] tracking-[0] mb-4 md:mb-6">
-                        Latest News of CryptoCurrency
+                        {contentData.content.title}
                     </h2>
                     <p className="w-full max-w-[828px] mx-auto [font-family:'Roboto-Light',Helvetica] font-light text-[#5c5c5c] text-sm sm:text-base md:text-lg lg:text-xl text-center tracking-[0] leading-[24px] md:leading-[35px]">
-                        Stay updated with the latest insights, market trends, and expert analysis from the world of cryptocurrency.
+                        {contentData.content.subtitle}
                     </p>
                 </div>
 

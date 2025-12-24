@@ -10,7 +10,7 @@ export const FAQDecorations = () => {
                 alt=""
                 width={400}
                 height={400}
-                className="absolute top-[0px] left-[0px] w-32 md:w-64 lg:w-auto -z-10"
+                className="absolute top-[0px] left-[0px] w-32 md:w-64 lg:w-auto z-10"
             />
 
             {/* Decorative frame bottom right */}
@@ -19,7 +19,7 @@ export const FAQDecorations = () => {
                 alt=""
                 width={147}
                 height={163}
-                className="absolute bottom-[220px] right-[110px] w-16 md:w-24 lg:w-auto -z-10"
+                className="absolute bottom-[220px] right-[110px] w-16 md:w-24 lg:w-auto z-10"
             />
         </>
     );

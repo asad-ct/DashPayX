@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import { FAQItem } from "./FAQItem";
+import { Loader } from "../common/Loader";
+import { useContent } from "@/hooks/useContent";
 
 interface FAQ {
     id: number;
@@ -11,45 +13,21 @@ interface FAQ {
 
 export const FAQAccordion = () => {
     const [openIndex, setOpenIndex] = useState<number | null>(1);
+    const { data: contentData, loading, error } = useContent('faq');
 
-    const faqs: FAQ[] = [
-        {
-            id: 1,
-            question: "What is DashPayX (DPX) in simple terms?",
-            answer:
-                "DPX is a BEP-20 token on the BNB Smart Chain focused on two things: fast, low-friction payments (starting with Pakistan & GCC) and a staking mechanism that rewards long-term holders with additional DPX over time.",
-        },
-        {
-            id: 2,
-            question: "On which blockchain does DPX live?",
-            answer:
-                "DPX is designed as a BEP-20 token on the BNB Smart Chain (BSC), chosen for its low fees, fast confirmation times and strong ecosystem of wallets and DeFi tools.",
-        },
-        {
-            id: 3,
-            question: "Is there a presale or private round?",
-            answer:
-                "The current vision is to avoid complicated presale structures and focus on transparent distribution and liquidity. Any future sale or allocation plan will be communicated clearly via the official DashPayX announcement channels.,",
-        },
-        {
-            id: 4,
-            question: "How will staking rewards work?",
-            answer:
-                "Staking is planned as an optional feature. Holders will be able to lock DPX into a smart contract and earn additional DPX, with reward parameters (rates, lock durations, caps) defined and published before launch. All details will be explained in simple guides.",
-        },
-        {
-            id: 5,
-            question: "Is this financial advice or a guarantee of returns?",
-            answer:
-                "No. Nothing about DashPayX is financial advice or a promise of profit. Crypto assets are highly volatile and involve risk. Always do your own research and only participate at a level you are comfortable with.",
-        },
-        {
-            id: 6,
-            question: "How can I stay updated on DashPayX progress?",
-            answer:
-                "The best way to stay updated is to follow the official DashPayX channels: Telegram community, Telegram announcement channel and X (Twitter). Key updates will also be reflected on this website over time.",
-        },
-    ];
+    if (loading) {
+        return <Loader />;
+    }
+
+    if (error || !contentData || !('content' in contentData)) {
+        return <div className="text-center py-12">Error loading FAQ content</div>;
+    }
+
+    const faqs: FAQ[] = contentData.content.faqs?.map((faq, index) => ({
+        id: index + 1,
+        question: faq.question,
+        answer: faq.answer,
+    })) || [];
 
     const handleToggle = (index: number) => {
         setOpenIndex(openIndex === index ? null : index);

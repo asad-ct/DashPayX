@@ -1,24 +1,46 @@
+"use client";
+
 import React from "react";
 import { HeroButton } from "./HeroButton";
+import { Loader } from "../common/Loader";
+import { useContent } from "@/hooks/useContent";
 
 export const HeroContent = () => {
+    const { data: contentData, loading, error } = useContent('hero');
+
+    if (loading) {
+        return <Loader />;
+    }
+
+    if (error || !contentData || !('content' in contentData)) {
+        return <div className="text-white">Error loading content</div>;
+    }
+
+    const content = contentData.content;
+
     return (
-        <div className="w-full flex flex-col gap-4 md:gap-6">
+        <div className="w-full flex flex-col gap-4 md:gap-6 px-0 md:px-12 lg:px-18">
             <h1 className="[font-family:'Albert_Sans-ExtraBold',Helvetica] font-extrabold text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-[0] leading-tight">
-                BEP-20 . BNB SMART CHAIN
-                <br />
-                REAL - WORLD PAYMENTS
+                {content.title?.split('\n').map((line, i) => (
+                    <span key={i}>
+                        {line}
+                        {i < content.title.split('\n').length - 1 && <br />}
+                    </span>
+                ))}
             </h1>
 
             <p className="max-w-2xl [font-family:'Inter-Medium',Helvetica] font-medium text-white text-sm sm:text-base md:text-lg lg:text-xl tracking-[0] leading-relaxed">
-                A utility - first BEP-20 toke designed for everyday payments
-                <br />
-                starting form Pakistan and the GCC. Send value in seconds
+                {content.description?.split('\n').map((line, i) => (
+                    <span key={i}>
+                        {line}
+                        {i < content.description.split('\n').length - 1 && <br />}
+                    </span>
+                ))}
             </p>
 
             <div className="flex flex-row gap-2 sm:gap-3 md:gap-4 lg:gap-6">
-                <HeroButton text="Token Distribution" variant="primary" />
-                <HeroButton text="Whitepaper" variant="secondary" />
+                <HeroButton text={content.primaryCta?.text} variant="primary" />
+                <HeroButton text={content.secondaryCta?.text} variant="secondary" />
             </div>
         </div>
     );

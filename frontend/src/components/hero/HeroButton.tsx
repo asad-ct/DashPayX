@@ -11,7 +11,7 @@ export const HeroButton: React.FC<HeroButtonProps> = ({
     variant = "primary",
     onClick,
 }) => {
-    const baseClasses = "w-[150px] sm:w-[180px] md:w-[234px] h-[40px] sm:h-[48px] md:h-[55px] flex items-center justify-center rounded-[100px] overflow-hidden transition-all";
+    const baseClasses = "flex items-center justify-center rounded-[100px] overflow-hidden transition-all p-3 px-4";
     const variantClasses = {
         primary: "bg-white text-[#174862] hover:bg-gray-100 hover:shadow-lg",
         secondary: "border-2 border-solid border-white text-white hover:bg-white/10",

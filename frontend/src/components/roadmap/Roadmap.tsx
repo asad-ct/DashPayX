@@ -1,7 +1,11 @@
+"use client";
+
 import React from "react";
 import { RoadmapHeader } from "./RoadmapHeader";
 import { RoadmapGrid } from "./RoadmapGrid";
 import { RoadmapFooter } from "./RoadmapFooter";
+import { Loader } from "../common/Loader";
+import { useContent } from "@/hooks/useContent";
 
 interface PhaseData {
     phaseNumber: string;
@@ -10,48 +14,28 @@ interface PhaseData {
 }
 
 export const Roadmap: React.FC = () => {
-    const phases: PhaseData[] = [
-        {
-            phaseNumber: "1",
-            title: "Foundation",
-            description: [
-                "Token design and initial smart contracts (DPX & staking).",
-                "Brand identity, official website & social channels.",
-                "Core documentation and positioning for payments & staking.",
-            ],
-        },
-        {
-            phaseNumber: "2",
-            title: "Community & Liquidity",
-            description: [
-                "Launch of public community channels (Telegram, X, Discord).",
-                "Initial liquidity provision on DEX (e.g. PancakeSwap).",
-                "Transparent communication on token distribution and treasury policy.",
-            ],
-        },
-        {
-            phaseNumber: "3",
-            title: "Staking & Ecosystem",
-            description: [
-                "Deployment of audited staking contracts for DPX.",
-                "Publishing of detailed staking documentation & tutorials.",
-                "Early ecosystem integrations and utility pilots for DPX payments.",
-            ],
-        },
-        {
-            phaseNumber: "4",
-            title: "Payments & Expansion",
-            description: [
-                "Partnerships with payment facilitators, fintechs and merchants in Pakistan & GCC.",
-                "Exploration of remittance and bill payment use cases with compliant partners.",
-                "Broader regional expansion based on adoption, regulation and demand.",
-            ],
-        },
-    ];
+    const { data: contentData, loading, error } = useContent('roadmap');
+
+    if (loading) {
+        return <Loader />;
+    }
+
+    if (error || !contentData || !('content' in contentData)) {
+        return <div className="text-center py-12">Error loading roadmap content</div>;
+    }
+
+    const phases: PhaseData[] = contentData.content.phases?.map((phase, index) => ({
+        phaseNumber: String(index + 1),
+        title: phase.title,
+        description: Array.isArray(phase.description) ? phase.description : [],
+    })) || [];
+
+    const title = contentData.content.title;
+    const subtitle = contentData.content.subtitle;
 
     return (
         <div className="relative w-full bg-white flex flex-col gap-6 md:gap-8 py-8 md:py-12 lg:py-16 px-4 overflow-hidden">
-            <RoadmapHeader />
+            <RoadmapHeader title={title} subtitle={subtitle} />
             <RoadmapGrid phases={phases} />
             <RoadmapFooter />
         </div>

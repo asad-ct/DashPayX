@@ -1,6 +1,10 @@
+"use client";
+
 import React from "react";
 import { StakingHeader } from "./StakingHeader";
 import { StakingCards } from "./StakingCards";
+import { Loader } from "../common/Loader";
+import { useContent } from "@/hooks/useContent";
 
 interface StakingFeature {
     id: number;
@@ -11,37 +15,31 @@ interface StakingFeature {
 }
 
 export const Staking: React.FC = () => {
-    const stakingFeatures: StakingFeature[] = [
-        {
-            id: 1,
-            title: "Simple Concept",
-            description:
-                "You commit (stake) a certain amount of DPX for a period of time. While your tokens are staked, they cannot be used for transfers, but they work on your behalf to earn staking rewards.",
-            icon: "/idea-mind-svgrepo-com-1.png",
-            iconType: "image",
-        },
-        {
-            id: 2,
-            title: "Designed for Sustainability",
-            description:
-                "Staking parameters (lock periods, reward rates, caps) are planned to be designed carefully so that rewards are meaningful for holders but still sustainable for the long-term health of the DashPayX economy.",
-            icon: "/go-green-icon-1.png",
-            iconType: "image",
-        },
-        {
-            id: 3,
-            title: "Transparent & Optional",
-            description:
-                "Staking will always be optional. Users who prefer pure liquidity can simply hold or use DPX for payments, while those with a longer horizon can choose to stake and earn extra DPX, with clear terms and on-chain transparency.",
-            icon: "/image-46.png",
-            iconType: "image",
-        },
-    ];
+    const { data: contentData, loading, error } = useContent('staking');
+
+    if (loading) {
+        return <Loader />;
+    }
+
+    if (error || !contentData || !('content' in contentData)) {
+        return <div className="text-center py-12">Error loading staking content</div>;
+    }
+
+    const stakingFeatures: StakingFeature[] = contentData.content.features?.map((feature, index) => ({
+        id: index + 1,
+        title: feature.title,
+        description: feature.description,
+        icon: feature.icon || "/idea-mind-svgrepo-com-1.png",
+        iconType: "image" as const,
+    })) || [];
+
+    const title = contentData.content.title;
+    const subtitle = contentData.content.subtitle;
 
     return (
         <div className="relative w-full min-h-auto md:min-h-[749px] bg-[linear-gradient(180deg,rgba(6,49,68,0.9)_0%,rgba(35,116,143,0.9)_100%)] py-12 md:py-16 overflow-hidden">
             <div className="relative flex flex-col gap-8 md:gap-12 px-4">
-                <StakingHeader />
+                <StakingHeader title={title} subtitle={subtitle} />
                 <StakingCards features={stakingFeatures} />
             </div>
 
