@@ -38,6 +38,12 @@ const secondbannerFields = [
         type: 'text',
         placeholder: 'Enter CTA button text (e.g., Start Your Demo)',
     },
+    {
+        name: 'ctaUrl',
+        label: 'CTA Button URL',
+        type: 'text',
+        placeholder: 'Enter CTA button URL (e.g., https://example.com)',
+    },
 ];
 
 export default function AdminSecondBanner() {

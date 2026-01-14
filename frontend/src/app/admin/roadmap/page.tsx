@@ -27,6 +27,12 @@ const roadmapFields = [
             { name: 'description', label: 'Phase Description (comma-separated)', placeholder: 'Enter descriptions separated by commas' },
         ],
     },
+    {
+        name: 'footerText',
+        label: 'Footer Text',
+        type: 'textarea',
+        placeholder: 'Enter footer text',
+    },
 ];
 
 export default function AdminRoadmap() {

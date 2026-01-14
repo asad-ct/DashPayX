@@ -27,7 +27,7 @@ export const Banner = (): React.ReactNode => {
     const features: FeatureCard[] = bannerData.features || [];
 
     // Get image from database or use default
-    let imageSrc = '/banner1.png';
+    let imageSrc = '';
     if (bannerData.image) {
         imageSrc = bannerData.image.startsWith('/api/')
             ? `${apiUrl.replace('/api', '')}${bannerData.image}`

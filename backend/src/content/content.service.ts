@@ -90,6 +90,13 @@ export class ContentService {
                 },
             },
             {
+                section_type: 'aboutsection',
+                content: {
+                    title: 'DashPay (DPX) Fast, Borderless Crypto Payments With Built-In Staking',
+                    subtitle: 'A utility-first BEP-20 token designed for everyday payments starting from Pakistan and the GCC. Send value in seconds and let long-term holders earn staking rewards within the same ecosystem.',
+                },
+            },
+            {
                 section_type: 'banner',
                 content: {
                     heading: 'What is DashPayX (DPX)?',
@@ -179,6 +186,7 @@ export class ContentService {
                             description: 'Everyday payments (starting with Pakistan & GCC), staking rewards, and future integrations with partner platforms and merchants.',
                         },
                     ],
+                    footerText: 'Future adjustments to allocation and use cases will be communicated transparently via official DashPayX channels.',
                 },
             },
             {
@@ -224,6 +232,7 @@ export class ContentService {
                             ],
                         },
                     ],
+                    footerText: 'This roadmap is indicative and may change based on market conditions, regulatory guidance, technical constraints and community feedback. All updates will be communicated via official DashPayX channels.',
                 },
             },
             {
@@ -257,6 +266,7 @@ export class ContentService {
                             qrCode: '/qr-audit.png',
                         },
                     ],
+                    footerText: 'Nothing on this website is financial advice. Crypto assets are highly volatile and may be subject to regulatory change. Always do your own research and only participate at a risk level you can afford.',
                 },
             },
             {

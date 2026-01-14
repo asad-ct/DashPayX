@@ -27,12 +27,13 @@ export const Roadmap: React.FC = () => {
 
     const title = contentData.content.title;
     const subtitle = contentData.content.subtitle;
+    const footerText = contentData.content.footerText;
 
     return (
         <div className="relative w-full bg-white flex flex-col gap-6 md:gap-8 py-8 md:py-12 lg:py-16 px-4 overflow-hidden">
             <RoadmapHeader title={title} subtitle={subtitle} />
             <RoadmapGrid phases={phases} />
-            <RoadmapFooter />
+            <RoadmapFooter footerText={footerText} />
         </div>
     );
 };

@@ -26,6 +26,12 @@ const tokenomicsFields = [
             { name: 'description', label: 'Card Description', placeholder: 'Enter card description' },
         ],
     },
+    {
+        name: 'footerText',
+        label: 'Footer Text',
+        type: 'textarea',
+        placeholder: 'Enter footer text',
+    },
 ];
 
 export default function AdminTokenomics() {

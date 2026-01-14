@@ -7,6 +7,7 @@ interface SecondBannerContentProps {
     description: string;
     bulletPoints: string[];
     ctaText: string;
+    ctaUrl?: string;
     onCtaClick?: () => void;
 }
 
@@ -15,6 +16,7 @@ export const SecondBannerContent: React.FC<SecondBannerContentProps> = ({
     description,
     bulletPoints,
     ctaText,
+    ctaUrl,
     onCtaClick,
 }) => {
     return (
@@ -32,7 +34,7 @@ export const SecondBannerContent: React.FC<SecondBannerContentProps> = ({
             </div>
 
             <div className="flex justify-center md:justify-start mt-8 md:mt-12">
-                <CTAButton text={ctaText} onClick={onCtaClick} />
+                <CTAButton text={ctaText} link={ctaUrl} onClick={onCtaClick} />
             </div>
         </div>
     );

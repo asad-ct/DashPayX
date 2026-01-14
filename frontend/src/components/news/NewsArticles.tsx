@@ -71,9 +71,21 @@ export const NewsArticles = () => {
 
                 {/* View All Button */}
                 <div className="flex justify-center">
-                    <button className="w-[140px] md:w-[180px] h-[40px] md:h-[50px] bg-[#29838a] rounded-lg overflow-hidden flex items-center justify-center hover:bg-[#237a81] transition-colors">
+                    <button 
+                        onClick={() => {
+                            const url = contentData.content.buttonUrl;
+                            if (url) {
+                                if (url.startsWith('http://') || url.startsWith('https://')) {
+                                    window.open(url, '_blank', 'noopener,noreferrer');
+                                } else {
+                                    window.open(`https://${url}`, '_blank', 'noopener,noreferrer');
+                                }
+                            }
+                        }}
+                        className="w-[140px] md:w-[180px] h-[40px] md:h-[50px] bg-[#29838a] rounded-lg overflow-hidden flex items-center justify-center hover:bg-[#237a81] transition-colors cursor-pointer"
+                    >
                         <span className="[font-family:'Inter-Regular',Helvetica] font-normal text-white text-xs md:text-sm lg:text-base tracking-[0] leading-[normal]">
-                            View All Articles
+                            {contentData.content.buttonText || 'View All Articles'}
                         </span>
                     </button>
                 </div>

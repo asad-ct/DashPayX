@@ -39,5 +39,5 @@ const bannerFields = [
 ];
 
 export default function AdminBanner() {
-    return <AdminForm sectionType="banner" title="Banner Section" fields={bannerFields} />;
+    return <AdminForm sectionType="banner" title="About Us Section" fields={bannerFields} />;
 }

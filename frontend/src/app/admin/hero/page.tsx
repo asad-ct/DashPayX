@@ -6,19 +6,19 @@ import { AdminForm } from '@/components/admin/AdminForm';
 const heroFields = [
     {
         name: 'title',
-        label: 'Hero Title',
+        label: 'Home Title',
         type: 'textarea',
         placeholder: 'Enter hero title (use \\n for line breaks)',
     },
     {
         name: 'description',
-        label: 'Hero Description',
+        label: 'Home Description',
         type: 'textarea',
         placeholder: 'Enter hero description',
     },
     {
         name: 'image',
-        label: 'Hero Image',
+        label: 'Home Image',
         type: 'file',
         imageKey: 'main',
         accept: 'image/*',
@@ -44,5 +44,5 @@ const heroFields = [
 ];
 
 export default function AdminHero() {
-    return <AdminForm sectionType="hero" title="Hero Section" fields={heroFields} />;
+    return <AdminForm sectionType="hero" title="Home Section" fields={heroFields} />;
 }

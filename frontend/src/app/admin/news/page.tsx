@@ -23,11 +23,23 @@ const newsFields = [
         itemLabel: 'Article',
         subfields: [
             { name: 'image', label: 'Article Image', type: 'file', accept: 'image/*' },
-            { name: 'title', label: 'Article Title', placeholder: 'Enter article title' },
-            { name: 'description', label: 'Article Description', placeholder: 'Enter article description' },
+            { name: 'title', label: 'Article Title', placeholder: 'Enter article title', maxLength: 90 },
+            { name: 'description', label: 'Article Description', placeholder: 'Enter article description', maxLength: 125 },
             { name: 'date', label: 'Date', placeholder: 'e.g., 19 November 2025' },
             { name: 'link', label: 'Article Link', placeholder: 'Enter article URL' },
         ],
+    },
+    {
+        name: 'buttonText',
+        label: 'Button Text',
+        type: 'text',
+        placeholder: 'Enter button text (e.g., View All Articles)',
+    },
+    {
+        name: 'buttonUrl',
+        label: 'Button URL',
+        type: 'text',
+        placeholder: 'Enter button URL',
     },
 ];
 

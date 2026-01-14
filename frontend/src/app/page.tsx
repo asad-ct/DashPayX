@@ -1,3 +1,5 @@
+"use client";
+
 import { Navbar } from "@/components/navbar/Navbar";
 import { Hero } from "@/components/hero/Hero";
 import { SectionHeading } from "@/components/common/SectionHeading";
@@ -11,8 +13,11 @@ import { Testimonials } from "@/components/testimonials/Testimonials";
 import { FAQ } from "@/components/faq/FAQ";
 import { NewsArticles } from "@/components/news/NewsArticles";
 import { Contact } from "@/components/contact/Contact";
+import { useContent } from "@/hooks/useContent";
 
 export default function Home() {
+  const { data: aboutSectionData } = useContent('aboutsection');
+
   return (
     <main>
       <Navbar />
@@ -20,11 +25,12 @@ export default function Home() {
         <Hero />
       </section>
       <section id="about">
-        <SectionHeading
-          title="DashPay (DPX) Fast, Borderless Crypto Payments With Built-In Staking"
-          subtitle="A utility-first BEP-20 token designed for everyday payments starting from Pakistan and the GCC. Send value in seconds
-        and let long-term holders earn staking rewards within the same ecosystem."
-        />
+        {aboutSectionData && 'content' in aboutSectionData && (
+          <SectionHeading
+            title={aboutSectionData.content.title || "DashPay (DPX) Fast, Borderless Crypto Payments With Built-In Staking"}
+            subtitle={aboutSectionData.content.subtitle || "A utility-first BEP-20 token designed for everyday payments starting from Pakistan and the GCC. Send value in seconds and let long-term holders earn staking rewards within the same ecosystem."}
+          />
+        )}
         <Banner />
       </section>
       <section id="staking">

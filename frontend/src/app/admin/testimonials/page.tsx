@@ -28,6 +28,12 @@ const testimonialsFields = [
             { name: 'qrCode', label: 'QR Code Image URL', placeholder: 'e.g., /qr-contract.png' },
         ],
     },
+    {
+        name: 'footerText',
+        label: 'Footer Text',
+        type: 'textarea',
+        placeholder: 'Enter footer text',
+    },
 ];
 
 export default function AdminTestimonials() {

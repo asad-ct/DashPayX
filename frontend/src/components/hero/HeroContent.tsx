@@ -38,8 +38,8 @@ export const HeroContent = () => {
             </p>
 
             <div className="flex flex-row gap-2 sm:gap-3 md:gap-4 lg:gap-6">
-                <HeroButton text={content.primaryCta?.text} variant="primary" />
-                <HeroButton text={content.secondaryCta?.text} variant="secondary" />
+                <HeroButton text={content.primaryCta?.text} variant="primary" link={content.primaryCta?.link} />
+                <HeroButton text={content.secondaryCta?.text} variant="secondary" link={content.secondaryCta?.link} />
             </div>
         </div>
     );

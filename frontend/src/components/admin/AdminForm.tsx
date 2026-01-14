@@ -12,6 +12,7 @@ interface FieldSubfield {
     accept?: string;
     imageKey?: string;
     inputType?: string;
+    maxLength?: number;
 }
 
 interface FormField {
@@ -248,10 +249,6 @@ export function AdminForm({ sectionType, title, fields }: AdminFormProps) {
             setSaving(false);
         }
     };
-
-    if (loading) {
-        return <div className="text-center py-8">Loading...</div>;
-    }
 
     return (
         <div className="bg-white rounded-lg shadow-md p-8">
@@ -492,15 +489,23 @@ export function AdminForm({ sectionType, title, fields }: AdminFormProps) {
                                                         )}
                                                     </>
                                                 ) : (
-                                                    <input
-                                                        type={subfield.inputType || 'text'}
-                                                        value={item[subfield.name] || ''}
-                                                        onChange={(e) =>
-                                                            handleArrayChange(field.name, index, subfield.name, e.target.value)
-                                                        }
-                                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                                        placeholder={subfield.placeholder}
-                                                    />
+                                                    <div>
+                                                        <input
+                                                            type={subfield.inputType || 'text'}
+                                                            value={item[subfield.name] || ''}
+                                                            onChange={(e) =>
+                                                                handleArrayChange(field.name, index, subfield.name, e.target.value)
+                                                            }
+                                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                                            placeholder={subfield.placeholder}
+                                                            maxLength={subfield.maxLength}
+                                                        />
+                                                        {subfield.maxLength && (
+                                                            <p className="text-xs text-gray-500 mt-1">
+                                                                {(item[subfield.name] || '').length}/{subfield.maxLength} characters
+                                                            </p>
+                                                        )}
+                                                    </div>
                                                 )}
                                             </div>
                                         ))}

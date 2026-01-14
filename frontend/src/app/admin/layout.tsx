@@ -3,12 +3,15 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
+import { useGlobalLoading } from '@/hooks/useGlobalLoading';
+import AdminLoader from '@/components/common/AdminLoader';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
     const router = useRouter();
     const pathname = usePathname();
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const { isLoading: isContentLoading } = useGlobalLoading();
 
     useEffect(() => {
         // Skip auth check for login page
@@ -32,16 +35,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         localStorage.removeItem('admin_user');
         router.push('/admin/login');
     };
-
-    // Show loading or login page
-    if (isLoading) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-gray-100">
-                <div className="text-gray-600">Loading...</div>
-            </div>
-        );
-    }
-
+    
     // Don't show sidebar for login page
     if (pathname === '/admin/login') {
         return <>{children}</>;
@@ -64,16 +58,19 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                         Dashboard
                     </Link>
                     <Link href="/admin/hero" className="block px-6 py-3 hover:bg-gray-800/50 transition">
-                        Hero Section
+                        Home Page
+                    </Link>
+                    <Link href="/admin/aboutsection" className="block px-6 py-3 hover:bg-gray-800/50 transition">
+                        Introduction
                     </Link>
                     <Link href="/admin/banner" className="block px-6 py-3 hover:bg-gray-800/50 transition">
-                        Banner
-                    </Link>
-                    <Link href="/admin/secondbanner" className="block px-6 py-3 hover:bg-gray-800/50 transition">
-                        Second Banner
+                        About Us
                     </Link>
                     <Link href="/admin/staking" className="block px-6 py-3 hover:bg-gray-800/50 transition">
                         Staking
+                    </Link>
+                    <Link href="/admin/secondbanner" className="block px-6 py-3 hover:bg-gray-800/50 transition">
+                        Second Banner
                     </Link>
                     <Link href="/admin/tokenomics" className="block px-6 py-3 hover:bg-gray-800/50 transition">
                         Tokenomics
@@ -110,7 +107,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </aside>
 
             {/* Main content */}
-            <main className="flex-1">
+            <main className="flex-1 relative">
+                {isContentLoading && <AdminLoader />}
                 <div className="p-8">
                     {children}
                 </div>

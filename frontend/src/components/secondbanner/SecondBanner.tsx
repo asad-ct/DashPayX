@@ -17,6 +17,7 @@ export const SecondBanner = () => {
     const description = secondBannerData.description;
     const bulletPoints = secondBannerData.bulletPoints || [];
     const ctaText = secondBannerData.ctaText;
+    const ctaUrl = secondBannerData.ctaUrl;
 
     return (
         <section className="w-full min-h-auto bg-[#f9f9f9] py-12">
@@ -31,6 +32,7 @@ export const SecondBanner = () => {
                         description={description}
                         bulletPoints={bulletPoints}
                         ctaText={ctaText}
+                        ctaUrl={ctaUrl}
                     />
                 </div>
             </div>

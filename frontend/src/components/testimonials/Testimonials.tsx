@@ -36,12 +36,13 @@ export const Testimonials = () => {
         iconType: card.iconType || "image",
         bgColor: card.bgColor || "bg-[#f0f0f0]",
         textColor: card.textColor || "text-[#515151]",
-        borderColor: card.borderColor || "border-[#4fc3f7]",
+        borderColor: card.borderColor || "border-[#29848a]",
         starIcon: card.starIcon || "/star-1.svg",
     })) || [];
 
     const title = contentData.content.title;
     const subtitle = contentData.content.subtitle;
+    const footerText = contentData.content.footerText;
 
     return (
         <section className="relative w-full bg-neutral-50 flex flex-col gap-6 md:gap-8 py-8 md:py-16 px-4">
@@ -52,7 +53,7 @@ export const Testimonials = () => {
 
                 <TestimonialsCards cards={transparencyCards} />
 
-                <TestimonialsFooter />
+                <TestimonialsFooter footerText={footerText} />
             </div>
         </section>
     );

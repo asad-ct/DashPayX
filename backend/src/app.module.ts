@@ -27,7 +27,7 @@ import { User } from './entities/user.entity';
       database: process.env.DB_DATABASE || 'dashpayx',
       entities: [ContentSection, SectionImage, ContactSubmission, User],
       synchronize: process.env.DB_SYNCHRONIZE === 'true' || true,
-      logging: process.env.DB_LOGGING === 'true' || true,
+      // logging: process.env.DB_LOGGING === 'true' || true,
     }),
     ContentModule,
     ImageModule,

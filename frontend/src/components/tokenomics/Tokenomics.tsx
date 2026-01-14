@@ -26,6 +26,7 @@ export const Tokenomics: React.FC = () => {
 
     const title = contentData.content.title;
     const subtitle = contentData.content.subtitle;
+    const footerText = contentData.content.footerText;
 
     return (
         <div className="relative w-full min-h-auto md:min-h-[716px] bg-[#f6f6f6] flex flex-col overflow-hidden">
@@ -53,7 +54,7 @@ export const Tokenomics: React.FC = () => {
             {/* Content */}
             <div className="flex flex-col items-center justify-center flex-1 gap-6 md:gap-8 py-8 md:py-12 lg:py-16 px-4 relative z-10">
                 <TokenomicsHeader title={title} subtitle={subtitle} />
-                <TokenomicsGrid cards={tokenomicsData} />
+                <TokenomicsGrid cards={tokenomicsData} footerText={footerText} />
             </div>
         </div>
     );

@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 interface NavLink {
     label: string;
@@ -11,10 +10,11 @@ interface NavLink {
 
 const navigationLinks: NavLink[] = [
     { label: "Home", href: "#home" },
-    { label: "Token", href: "#token" },
-    { label: "Feature", href: "#feature" },
-    { label: "Services", href: "#services" },
-    { label: "Blog", href: "#blog" },
+    { label: "About", href: "#about" },
+    { label: "Tokenomics", href: "#tokenomics" },
+    { label: "Roadmap", href: "#roadmap" },
+    { label: "Staking", href: "#staking" },
+    { label: "FAQ", href: "#faq" },
     { label: "Contact Us", href: "#contact" },
 ];
 
@@ -23,10 +23,21 @@ export const Footer = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
+    const handleScroll = (href: string) => {
+        if (href === "#home") {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        } else {
+            const element = document.querySelector(href);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+    };
+
     return (
         <footer className="relative">
             {/* Social Media Icons */}
-            <div className="flex justify-center mb-6 md:mb-12">
+            {/* <div className="flex justify-center mb-6 md:mb-12">
                 <Image
                     src="/socials.png"
                     alt="Social media links"
@@ -34,16 +45,19 @@ export const Footer = () => {
                     height={45}
                     className="w-[150px] md:w-auto h-auto"
                 />
-            </div>
+            </div> */}
 
             {/* Navigation */}
             <nav className="flex flex-wrap justify-center gap-4 md:gap-10 mb-6 md:mb-8 px-4" aria-label="Footer navigation">
                 <ul className="flex flex-wrap gap-3 md:gap-10 [font-family:'Inter-Medium',Helvetica] font-medium text-white text-xs sm:text-sm md:text-lg text-center tracking-[0] justify-center">
                     {navigationLinks.map((link, index) => (
                         <li key={index}>
-                            <Link href={link.href} className="hover:underline transition-all">
+                            <button
+                                onClick={() => handleScroll(link.href)}
+                                className="hover:underline transition-all cursor-pointer bg-transparent border-none text-white [font-family:'Inter-Medium',Helvetica] font-medium text-xs sm:text-sm md:text-lg"
+                            >
                                 {link.label}
-                            </Link>
+                            </button>
                         </li>
                     ))}
                 </ul>
