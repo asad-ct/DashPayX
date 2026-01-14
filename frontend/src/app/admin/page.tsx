@@ -13,19 +13,29 @@ export default function AdminDashboard() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <AdminCard
-                    title="Hero Section"
+                    title="Home Section"
                     description="Edit hero title, description, and buttons"
                     href="/admin/hero"
                 />
                 <AdminCard
-                    title="FAQ"
-                    description="Manage frequently asked questions"
-                    href="/admin/faq"
+                    title="Introduction Section"
+                    description="Edit Introduction title, description"
+                    href="/admin/aboutsection"
+                />
+                <AdminCard
+                    title="About Us"
+                    description="Edit About Us content and text"
+                    href="/admin/banner"
                 />
                 <AdminCard
                     title="Staking"
                     description="Edit staking features and information"
                     href="/admin/staking"
+                />
+                <AdminCard
+                    title="Second Banner"
+                    description="Edit second banner content and images"
+                    href="/admin/secondbanner"
                 />
                 <AdminCard
                     title="Tokenomics"
@@ -43,14 +53,14 @@ export default function AdminDashboard() {
                     href="/admin/testimonials"
                 />
                 <AdminCard
+                    title="FAQ"
+                    description="Manage frequently asked questions"
+                    href="/admin/faq"
+                />
+                <AdminCard
                     title="News"
                     description="Manage news articles and updates"
                     href="/admin/news"
-                />
-                <AdminCard
-                    title="Banner"
-                    description="Edit banner content and text"
-                    href="/admin/banner"
                 />
                 <AdminCard
                     title="Contact Us"
