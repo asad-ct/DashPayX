@@ -109,11 +109,11 @@ export function AdminForm({ sectionType, title, fields }: AdminFormProps) {
 
             uploading.delete(field.name);
             setUploadingImages(uploading);
-            setSaveMessage('✓ Image uploaded successfully!');
+            setSaveMessage('Image uploaded successfully!');
             setTimeout(() => setSaveMessage(''), 3000);
         } catch (err) {
             console.error('Upload error:', err);
-            setSaveMessage('✗ Error uploading image. Please try again.');
+            setSaveMessage('Error uploading image. Please try again.');
             const uploading = new Set(uploadingImages);
             uploading.delete(field.name);
             setUploadingImages(uploading);
@@ -183,11 +183,11 @@ export function AdminForm({ sectionType, title, fields }: AdminFormProps) {
 
             uploading.delete(`${arrayPath}_${index}`);
             setUploadingImages(uploading);
-            setSaveMessage('✓ Image uploaded successfully!');
+            setSaveMessage('Image uploaded successfully!');
             setTimeout(() => setSaveMessage(''), 3000);
         } catch (err) {
             console.error('Upload error:', err);
-            setSaveMessage('✗ Error uploading image. Please try again.');
+            setSaveMessage('Error uploading image. Please try again.');
             const uploading = new Set(uploadingImages);
             uploading.delete(`${arrayPath}_${index}`);
             setUploadingImages(uploading);
@@ -224,11 +224,11 @@ export function AdminForm({ sectionType, title, fields }: AdminFormProps) {
 
             uploading.delete(`${parentField}.${subfield}`);
             setUploadingImages(uploading);
-            setSaveMessage('✓ Image uploaded successfully!');
+            setSaveMessage('Image uploaded successfully!');
             setTimeout(() => setSaveMessage(''), 3000);
         } catch (err) {
             console.error('Upload error:', err);
-            setSaveMessage('✗ Error uploading image. Please try again.');
+            setSaveMessage('Error uploading image. Please try again.');
             const uploading = new Set(uploadingImages);
             uploading.delete(`${parentField}.${subfield}`);
             setUploadingImages(uploading);
@@ -293,6 +293,9 @@ export function AdminForm({ sectionType, title, fields }: AdminFormProps) {
                     if (field.type === 'file') {
                         const isUploading = uploadingImages.has(field.name);
                         const hasImage = formData[field.name];
+                        const imageSrc = hasImage && hasImage.startsWith('/api/')
+                            ? `${apiUrl.replace('/api', '')}${hasImage}`
+                            : hasImage;
                         return (
                             <div key={field.name}>
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -302,7 +305,7 @@ export function AdminForm({ sectionType, title, fields }: AdminFormProps) {
                                     <div className="mb-4 p-4 border border-gray-300 rounded-lg bg-gray-50">
                                         <p className="text-xs text-gray-600 mb-2">Current Image:</p>
                                         <img
-                                            src={hasImage}
+                                            src={imageSrc}
                                             alt="Current upload"
                                             className="max-w-xs max-h-48 rounded"
                                             onError={() => <div className="text-sm text-gray-500">Image preview unavailable</div>}
@@ -463,7 +466,10 @@ export function AdminForm({ sectionType, title, fields }: AdminFormProps) {
                                                             <div className="mb-4 p-3 border border-gray-300 rounded-lg bg-gray-100">
                                                                 <p className="text-xs text-gray-600 mb-2">Current Image:</p>
                                                                 <img
-                                                                    src={item[subfield.name]}
+                                                                    src={item[subfield.name].startsWith('/api/')
+                                                                        ? `${apiUrl.replace('/api', '')}${item[subfield.name]}`
+                                                                        : item[subfield.name]
+                                                                    }
                                                                     alt="Current"
                                                                     className="max-w-xs max-h-32 rounded"
                                                                     onError={(e) => (e.currentTarget.style.display = 'none')}
