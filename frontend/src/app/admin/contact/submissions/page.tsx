@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { getAuthHeaders, handleAuthError } from '@/lib/authUtils';
 
 interface ContactSubmission {
     id: number;
@@ -23,12 +24,15 @@ export default function AdminContactSubmissions() {
     const fetchSubmissions = async () => {
         try {
             const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
-            const token = localStorage.getItem('admin_token');
             const response = await fetch(`${apiUrl}/contact/submissions`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
+                headers: getAuthHeaders(),
             });
+
+            if (!response.ok) {
+                if (handleAuthError(response.status)) return;
+                throw new Error('Failed to fetch submissions');
+            }
+
             const data = await response.json();
             setSubmissions(data);
         } catch (error) {
@@ -43,19 +47,19 @@ export default function AdminContactSubmissions() {
 
         try {
             const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
-            const token = localStorage.getItem('admin_token');
             const response = await fetch(`${apiUrl}/contact/submissions/${id}`, {
                 method: 'DELETE',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
+                headers: getAuthHeaders(),
             });
 
-            if (response.ok) {
-                setDeleteMessage('✓ Submission deleted successfully');
-                fetchSubmissions();
-                setTimeout(() => setDeleteMessage(''), 3000);
+            if (!response.ok) {
+                if (handleAuthError(response.status)) return;
+                throw new Error('Failed to delete submission');
             }
+
+            setDeleteMessage('✓ Submission deleted successfully');
+            fetchSubmissions();
+            setTimeout(() => setDeleteMessage(''), 3000);
         } catch (error) {
             console.error('Error deleting submission:', error);
             setDeleteMessage('✗ Error deleting submission');

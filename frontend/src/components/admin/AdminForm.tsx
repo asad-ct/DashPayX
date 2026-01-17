@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useContent } from '@/hooks/useContent';
 import Image from 'next/image';
+import { getAuthHeaders, handleAuthError } from '@/lib/authUtils';
 
 interface FieldSubfield {
     name: string;
@@ -40,13 +41,6 @@ export function AdminForm({ sectionType, title, fields }: AdminFormProps) {
     const [uploadingImages, setUploadingImages] = useState<Set<string>>(new Set());
 
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
-
-    const getAuthHeaders = () => {
-        const token = localStorage.getItem('admin_token');
-        return {
-            'Authorization': `Bearer ${token}`,
-        };
-    };
 
     useEffect(() => {
         if (contentData && 'content' in contentData) {
@@ -98,6 +92,7 @@ export function AdminForm({ sectionType, title, fields }: AdminFormProps) {
             );
 
             if (!response.ok) {
+                if (handleAuthError(response.status)) return;
                 throw new Error('Failed to upload image');
             }
 
@@ -175,6 +170,7 @@ export function AdminForm({ sectionType, title, fields }: AdminFormProps) {
             );
 
             if (!response.ok) {
+                if (handleAuthError(response.status)) return;
                 throw new Error('Failed to upload image');
             }
 
@@ -216,6 +212,7 @@ export function AdminForm({ sectionType, title, fields }: AdminFormProps) {
             );
 
             if (!response.ok) {
+                if (handleAuthError(response.status)) return;
                 throw new Error('Failed to upload image');
             }
 
@@ -251,6 +248,7 @@ export function AdminForm({ sectionType, title, fields }: AdminFormProps) {
             });
 
             if (!response.ok) {
+                if (handleAuthError(response.status)) return;
                 throw new Error('Failed to save content');
             }
 
