@@ -31,7 +31,7 @@ export const Hero = () => {
 
             {/* Content container */}
             <div className="relative w-full mx-auto my-auto px-4 lg:px-24 py-16 md:py-24 z-10 flex flex-col lg:flex-row items-center">
-                <div className="w-full lg:w-[70%]">
+                <div className="w-full lg:w-[60%]">
                     <HeroContent />
                 </div>
             </div>
