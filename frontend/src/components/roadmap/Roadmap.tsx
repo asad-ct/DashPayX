@@ -22,7 +22,7 @@ export const Roadmap: React.FC = () => {
     const phases: PhaseData[] = contentData.content.phases?.map((phase: any, index: number) => ({
         phaseNumber: String(index + 1),
         title: phase.title,
-        description: Array.isArray(phase.description) ? phase.description : [],
+        description: typeof phase.description === 'string' ? phase.description.split(/,(?=[A-Z])/).map((s: any) => s.trim()) : [],
     })) || [];
 
     const title = contentData.content.title;
