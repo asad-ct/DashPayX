@@ -24,7 +24,6 @@ const stakingFields = [
         subfields: [
             { name: 'title', label: 'Feature Title', placeholder: 'e.g., Simple Concept' },
             { name: 'description', label: 'Feature Description', placeholder: 'Enter feature description' },
-            { name: 'icon', label: 'Icon URL', placeholder: '/icon.png' },
         ],
     },
 ];

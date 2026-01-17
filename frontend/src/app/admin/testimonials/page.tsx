@@ -25,7 +25,6 @@ const testimonialsFields = [
             { name: 'title', label: 'Card Title', placeholder: 'e.g., Contract Address' },
             { name: 'description', label: 'Card Description', placeholder: 'Enter card description' },
             { name: 'status', label: 'Status', placeholder: 'e.g., Planned, In preparation, To be announced' },
-            { name: 'qrCode', label: 'QR Code Image URL', placeholder: 'e.g., /qr-contract.png' },
         ],
     },
     {

@@ -29,11 +29,8 @@ const bannerFields = [
         type: 'array',
         placeholder: 'Features list',
         subfields: [
-            { name: 'id', label: 'Feature ID', type: 'text' },
             { name: 'title', label: 'Feature Title', type: 'text' },
             { name: 'description', label: 'Feature Description', type: 'textarea' },
-            { name: 'icon', label: 'Icon Path', type: 'text', placeholder: '/icon-path.svg' },
-            { name: 'iconAlt', label: 'Icon Alt Text', type: 'text' },
         ],
     },
 ];
