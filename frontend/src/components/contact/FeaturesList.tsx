@@ -12,7 +12,7 @@ const features: Feature[] = [
     { text: "No Fees" },
 ];
 
-export const FeaturesList = () => {
+export const FeaturesList = ({ features }: { features: Feature[] }) => {
     return (
         <div className="flex flex-row gap-3 md:gap-4 justify-center mb-6 md:mb-8 px-4 md:px-0">
             {features.map((feature, index) => (

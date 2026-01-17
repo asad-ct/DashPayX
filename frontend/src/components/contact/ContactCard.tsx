@@ -6,9 +6,10 @@ import { FeaturesList } from "./FeaturesList";
 interface ContactCardProps {
     formTitle?: string;
     formSubtitle?: string;
+    features?: any[];
 }
 
-export const ContactCard = ({ formTitle = "Ready to get started?", formSubtitle = "Start your free trial." }: ContactCardProps) => {
+export const ContactCard = ({ formTitle = "Ready to get started?", formSubtitle = "Start your free trial.", features = [] }: ContactCardProps) => {
     return (
         <section className="w-full md:w-[900px] h-auto md:h-[590px] bg-white rounded-[15px] overflow-hidden shadow-[3px_4px_12px_3px_#00000026] relative">
             <div className="text-center pt-6 md:pt-10 mb-4 md:mb-8 px-4">
@@ -20,7 +21,7 @@ export const ContactCard = ({ formTitle = "Ready to get started?", formSubtitle 
                 </h3>
             </div>
 
-            <FeaturesList />
+            <FeaturesList features={features} />
 
             <ContactForm />
 
