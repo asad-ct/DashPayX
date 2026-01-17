@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useContent } from "@/hooks/useContent";
 
 export const FAQImage = () => {
-    const { data: contentData } = useContent('faq');
+    const { data: contentData, loading } = useContent('faq');
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
 
     let imageSrc = '';
@@ -15,8 +15,9 @@ export const FAQImage = () => {
             : contentData.content.image;
     }
 
-    console.log('FAQImage - imageSrc:', imageSrc);
-    console.log('FAQImage - contentData:', contentData);
+    if(loading) {
+        return (<div></div>);
+    }
 
     return (
         <div className="w-full sm:w-full md:w-[350px] lg:w-[700px] h-[280px] sm:h-[320px] md:h-[450px] lg:h-[850px] bg-white rounded-3xl border border-solid border-neutral-300 shadow-lg overflow-hidden">
