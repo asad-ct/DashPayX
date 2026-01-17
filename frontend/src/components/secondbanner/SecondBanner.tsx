@@ -15,7 +15,11 @@ export const SecondBanner = () => {
     const secondBannerData = contentData.content;
     const title = secondBannerData.title;
     const description = secondBannerData.description;
-    const bulletPoints = secondBannerData.bulletPoints || [];
+    const rawBulletPoints = secondBannerData.bulletPoints || [];
+    // Convert objects like {text: "..."} to strings
+    const bulletPoints = rawBulletPoints.map((item: any) =>
+        typeof item === 'string' ? item : item.text || ''
+    );
     const ctaText = secondBannerData.ctaText;
     const ctaUrl = secondBannerData.ctaUrl;
 

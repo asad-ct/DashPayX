@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 interface FieldSubfield {
     name: string;
-    label: string;
+    label?: string;
     type?: string;
     placeholder?: string;
     accept?: string;
@@ -17,7 +17,7 @@ interface FieldSubfield {
 
 interface FormField {
     name: string;
-    label: string;
+    label?: string;
     type: string;
     placeholder?: string;
     accept?: string;
@@ -50,9 +50,23 @@ export function AdminForm({ sectionType, title, fields }: AdminFormProps) {
 
     useEffect(() => {
         if (contentData && 'content' in contentData) {
-            setFormData(contentData.content);
+            // Normalize array fields: convert string arrays to object arrays
+            const normalizedContent = { ...contentData.content };
+
+            fields.forEach(field => {
+                if (field.type === 'array' && normalizedContent[field.name]) {
+                    const rawArray = normalizedContent[field.name];
+                    normalizedContent[field.name] = rawArray.map((item: any) =>
+                        typeof item === 'string' && field.subfields?.[0]?.name
+                            ? { [field.subfields[0].name]: item }
+                            : item
+                    );
+                }
+            });
+
+            setFormData(normalizedContent);
         }
-    }, [contentData]);
+    }, [contentData, fields]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;

@@ -29,7 +29,7 @@ const secondbannerFields = [
         type: 'array',
         itemLabel: 'Bullet Point',
         subfields: [
-            { name: 'text', label: 'Bullet Point Text', placeholder: 'Enter bullet point' },
+            { name: 'text', placeholder: 'Enter bullet point' },
         ],
     },
     {
