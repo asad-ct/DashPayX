@@ -27,7 +27,7 @@ export const FAQ = () => {
                     <h2 className="[font-family:'Spline_Sans-SemiBold',Helvetica] font-semibold text-white text-2xl sm:text-3xl md:text-4xl lg:text-[40px] tracking-[0] leading-7 md:leading-10 mb-3 md:mb-6">
                         {title}
                     </h2>
-                    <p className="w-full max-w-[1440px] mx-auto [font-family:'Inter-Regular',Helvetica] font-normal text-white text-sm sm:text-base md:text-lg lg:text-xl text-center tracking-[0] leading-[24px] md:leading-[30px]">
+                    <p className="w-full lg:w-[50%] max-w-[1440px] mx-auto [font-family:'Inter-Regular',Helvetica] font-normal text-white text-sm sm:text-base md:text-lg lg:text-xl text-center tracking-[0] leading-[24px] md:leading-[30px]">
                         {subtitle}
                     </p>
                 </div>

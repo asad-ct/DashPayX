@@ -10,7 +10,6 @@ import { useContent } from "@/hooks/useContent";
 export const Contact = () => {
     const { data: contentData } = useContent('contact');
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
-    const [copiedIndex, setCopiedIndex] = React.useState<number | null>(null);
 
     const content = contentData && 'content' in contentData ? contentData.content : null;
     const title = content?.title || "Join the DashPayX (DPX) Community";
@@ -26,13 +25,9 @@ export const Contact = () => {
         content?.qrTwitter,
     ].filter(Boolean);
 
-    const handleCopyLink = async (link: string, index: number) => {
-        try {
-            await navigator.clipboard.writeText(link);
-            setCopiedIndex(index);
-            setTimeout(() => setCopiedIndex(null), 2000);
-        } catch (err) {
-            console.error('Failed to copy link:', err);
+    const handleOpenLink = (link: string) => {
+        if (link) {
+            window.open(link, '_blank', 'noopener,noreferrer');
         }
     };
 
@@ -71,7 +66,7 @@ export const Contact = () => {
                                 <div
                                     key={index}
                                     className="flex flex-col items-center flex-shrink-0 cursor-pointer hover:opacity-80 transition relative"
-                                    onClick={() => handleCopyLink(qr.link, index)}
+                                    onClick={() => handleOpenLink(qr.link)}
                                 >
                                     <div className="w-[90px] sm:w-[110px] md:w-[150px] lg:w-[200px] h-[90px] sm:h-[120px] md:h-[150px] lg:h-[200px] bg-white rounded-lg p-2 mb-2 md:mb-4 border border-solid border-neutral-300 shadow-md">
                                         <Image
@@ -86,11 +81,6 @@ export const Contact = () => {
                                     <p className="[font-family:'Inter-Regular',Helvetica] font-normal text-[#515151] text-xs sm:text-sm md:text-base text-center tracking-[0] leading-[20px] whitespace-nowrap">
                                         {qr.name}
                                     </p>
-                                    {copiedIndex === index && (
-                                        <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-green-600 text-white text-xs px-3 py-1 rounded shadow-lg whitespace-nowrap">
-                                            Link copied!
-                                        </div>
-                                    )}
                                 </div>
                             );
                         })}
